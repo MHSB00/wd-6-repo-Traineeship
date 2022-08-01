@@ -1,11 +1,1 @@
-{
-    "version": 3,
-    "mappings": "AEAA,AAAA,OAAO,CAAA;EAEH,gBAAgB,EDAN,OAAO;CCMpB;;AARD,AAII,OAJG,AAIF,MAAM,CAAA;EACH,gBAAgB,EDFH,OAAO;CCGvB",
-    "sources": [
-        "main.scss",
-        "assets/_colors.scss",
-        "assets/_button.scss"
-    ],
-    "names": [],
-    "file": "main.css"
-}
+{"version":3,"sources":["assets/_button.scss","main.css","assets/_colors.scss"],"names":[],"mappings":"AAAA;EAEI,yBAAA;ACAJ;ADEI;EACI,yBEFa;ADErB","file":"main.css"}

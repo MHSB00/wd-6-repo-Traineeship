@@ -1,10 +1,1 @@
-{
-    "version": 3,
-    "mappings": "ACsBA,AAAA,oBAAoB,CAAA;EAXhB,MAAM,EAAC,KAAK;EACZ,KAAK,EAAC,KAAK;EACX,gBAAgB,EAAE,MAAM;EACxB,UAAU,EAAE,gBAAgB,CASC,MAAM,CATI,MAAM;CAUhD;;AAFD,AANI,oBAMgB,AANf,MAAM,CAAA;EACH,gBAAgB,EAAE,MAAM;CAC3B;;AAQL,AAAA,OAAO,CAAA;EAzBH,gBAAgB,EAAE,SAAS;EAC3B,KAAK,EAAC,MAAM;CA0Bf;;AAFD,AAtBI,OAsBG,AAtBF,MAAM,CAAA;EACH,gBAAgB,EAAE,IAAI;EACtB,KAAK,EAAC,KAAK;CACd",
-    "sources": [
-        "main.scss",
-        "assets/_mixin.scss"
-    ],
-    "names": [],
-    "file": "main.css"
-}
+{"version":3,"sources":["assets/_mixin.scss","main.css"],"names":[],"mappings":"AAsBA;EAXI,aAAA;EACA,YAAA;EACA,wBAAA;EACA,0CAAA;ACTJ;ADWI;EACI,wBAAA;ACTR;;ADkBA;EAzBI,2BAAA;EACA,aAAA;ACWJ;ADTI;EACI,sBAAA;EACA,YAAA;ACWR","file":"main.css"}

@@ -1,6 +1,6 @@
+@charset "UTF-8";
 *, *::after, *::before {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
@@ -26,7 +26,6 @@ a:hover {
   position: relative;
   min-width: 200px;
 }
-
 .searchBarContainer input {
   position: relative;
   height: 20px;
@@ -36,35 +35,27 @@ a:hover {
   border-right: 1px solid #5EBEC4;
   border-bottom: 1px solid #5EBEC4;
 }
-
 .searchBarContainer input:focus {
   border-top: 1px solid #F92C85;
   border-right: 1px solid #F92C85;
   border-bottom: 1px solid #F92C85;
   outline: none;
 }
-
 .searchBarContainer input:focus ~ button {
   background-color: #F92C85;
 }
-
 .searchBarContainer button {
   top: 4px;
   height: 20px;
   margin-left: 18px;
   position: absolute;
   border: none;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: right;
-      -ms-flex-pack: right;
-          justify-content: right;
+  justify-content: right;
   border-top-left-radius: 50%;
   border-bottom-left-radius: 50%;
   background-color: #5EBEC4;
 }
-
 .searchBarContainer button:hover {
   background-color: #F92C85;
 }
@@ -77,7 +68,6 @@ a:hover {
     left: 44px;
   }
 }
-
 #cover {
   position: fixed;
   top: 0;
@@ -104,11 +94,9 @@ a:hover {
   text-align: center;
   color: #5EBEC4;
 }
-
 #loginScreen a:hover {
   color: #F92C85;
 }
-
 #loginScreen input[type=text], #loginScreen input[type=password] {
   width: 100%;
   padding: 5px;
@@ -118,7 +106,6 @@ a:hover {
   background-color: #FDF5DF;
   color: #F92C85;
 }
-
 #loginScreen button {
   width: 100%;
   height: 25px;
@@ -134,29 +121,20 @@ a:hover {
   background-position-x: 30%;
   background-position-y: 50%;
 }
-
 #loginScreen button:active {
   background-color: #F92C85;
 }
-
 #loginScreen p {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  justify-content: space-between;
 }
-
 #loginScreen img {
   width: 150px;
 }
-
 #loginScreen:target, #loginScreen:target + #cover {
   display: block;
   opacity: 1;
 }
-
 #loginScreen .cancel {
   display: block;
   position: absolute;
@@ -174,52 +152,33 @@ a:hover {
 
 @media (max-width: 515px) {
   .productCardContainer .productCardTile {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
+    flex-direction: column;
   }
   .productCardContainer .productCardTile .productCardDesc {
     padding-top: 10px;
     padding-bottom: 10px;
   }
 }
-
 @media (min-width: 515px) {
   .productCardContainer .productCardTile {
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: row;
-            flex-direction: row;
+    flex-direction: row;
   }
   .productCardContainer .productCardTile .productCardDesc {
     padding: 20px;
   }
 }
-
 .productCardContainer {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   font-family: Arial, Helvetica, sans-serif;
   color: #5EBEC4;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  flex-wrap: wrap;
 }
-
 .productCardContainer .productCardTile {
   padding: 15px;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  justify-content: space-between;
 }
-
 .productCardContainer .productCardTile .productCardImg {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   min-height: 165px;
   min-width: 165px;
@@ -228,39 +187,32 @@ a:hover {
   background-position: center;
   background-repeat: no-repeat;
 }
-
 .productCardContainer .productCardTile .productCardDesc {
   font-size: smaller;
 }
-
 .productCardContainer .productCardTile .productCardDesc .productCardTitle {
   font-size: larger;
   font-weight: bold;
 }
-
 .productCardContainer .productCardTile .productCardPrice {
   display: block;
   color: red;
 }
-
 .productCardContainer .productCardTile .productCardPrice .productCardPriceContainer {
   display: block;
 }
-
 .productCardContainer .productCardTile .productCardPrice .productCardPriceContainer .productCardPriceWhole {
   font-weight: 700;
   font-size: 2rem;
 }
-
 .productCardContainer .productCardTile .productCardPrice .productCardPriceContainer .productCardPriceDec:before {
   top: -5px;
   left: 8px;
   font-weight: 700;
   line-height: 0;
   position: relative;
-  content: ',';
+  content: ",";
 }
-
 .productCardContainer .productCardTile .productCardPrice .productCardPriceContainer .productCardPriceDec {
   line-height: 0;
   position: relative;
@@ -268,36 +220,23 @@ a:hover {
   top: 4px;
   font-size: 1.75rem;
 }
-
 .productCardContainer .productCardTile .productCardPrice .productCardOrder {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  flex-direction: column;
   font-size: 0.75rem;
   color: green;
 }
-
 .productCardContainer .productCardTile .productCardPrice .productCardOrder img {
   width: 111px;
 }
 
 .SignUpContainer {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -ms-flex-line-pack: right;
-      align-content: right;
+  align-content: right;
   text-align: right;
   color: #5EBEC4;
 }
-
 .SignUpContainer .formSignUpWelcome {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   text-align: left;
   padding: 15px;
@@ -310,7 +249,6 @@ a:hover {
   border: 1px solid #5EBEC4;
   text-align: left;
 }
-
 .formSignUp input[class=formSignUpField], .formSignUp input[type=password] {
   width: 100%;
   padding: 15px;
@@ -320,7 +258,6 @@ a:hover {
   background-color: #FDF5DF;
   color: #F92C85;
 }
-
 .formSignUp input[class=formSignUpFieldSmall] {
   padding: 15px;
   border: none;
@@ -329,7 +266,6 @@ a:hover {
   background-color: #FDF5DF;
   color: #F92C85;
 }
-
 .formSignUp button {
   background-color: #5EBEC4;
   border: none;
@@ -341,33 +277,26 @@ a:hover {
   padding: 5px;
   width: 200px;
 }
-
 .formSignUp button span {
   display: inline-block;
   position: relative;
-  -webkit-transition: 0.5s;
   transition: 0.5s;
 }
-
 .formSignUp button span:after {
-  content: '\00bb';
+  content: "»";
   position: absolute;
   opacity: 0;
   top: 0;
   right: -20px;
-  -webkit-transition: 0.5s;
   transition: 0.5s;
   color: #5EBEC4;
 }
-
 .formSignUp button:hover {
   background-color: #F92C85;
 }
-
 .formSignUp button:hover span {
   padding-right: 25px;
 }
-
 .formSignUp button:hover span:after {
   opacity: 1;
   right: 0;
@@ -375,121 +304,80 @@ a:hover {
 
 .accordionContainer {
   padding: 20px;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  flex-direction: column;
 }
-
 .accordionContainer .accordionBtn {
   background-color: #5EBEC4;
   color: #FDF5DF;
   text-align: left;
   border: none;
   outline: none;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  justify-content: space-between;
   padding: 10px;
   text-transform: uppercase;
   font-weight: bold;
 }
-
 .accordionContainer .accordionActive, .accordionContainer .accordionBtn:hover {
   background-color: #F92C85;
 }
-
 .accordionContainer .accordionBtn:after {
-  content: '\02795';
+  content: "➕";
   color: #FDF5DF;
   font-size: 13px;
   margin-left: 5px;
 }
-
 .accordionContainer .accordionActive:after {
   color: #FDF5DF;
-  content: "\2796";
+  content: "➖";
 }
-
 .accordionContainer .accordionPanel {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  flex-direction: column;
   color: #FDF5DF;
   overflow: hidden;
   max-height: 0;
-  -webkit-transition: max-height 0.2s ease-out;
   transition: max-height 0.2s ease-out;
   width: 100%;
   color: #5EBEC4;
 }
 
 .footerContainer {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
-
 .footerContainer .footerSitemap {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  flex-wrap: wrap;
   padding: 10px;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+  flex-direction: row;
 }
-
 .footerContainer .footerSitemap ul {
   list-style-type: none;
 }
-
 .footerContainer .footerSitemap li:first-of-type {
   color: #F92C85;
   font-weight: bold;
 }
-
 .footerContainer .footerSocials {
   padding: 25px;
 }
-
 .footerContainer .footerSocials img {
   width: 34px;
   height: 34px;
 }
 
 .root {
-  display: -ms-grid;
   display: grid;
   height: 100vh;
-  -ms-grid-rows: auto auto 1fr auto;
-      grid-template-rows: auto auto 1fr auto;
+  grid-template-rows: auto auto 1fr auto;
   font-family: "Kdam Thmor Pro", sans-serif;
 }
 
 .navbar {
-  -ms-grid-row: 1;
   grid-row: 1;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   position: -webkit-sticky;
   position: sticky;
@@ -497,16 +385,12 @@ a:hover {
   max-height: 70px;
   padding: 10px;
   background-color: #FDF5DF;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  justify-content: space-between;
   z-index: 3;
 }
-
 .navbar__logo {
   width: 200px;
 }
-
 @media (max-width: 515px) {
   .navbar input[type=checkbox] {
     position: absolute;
@@ -522,10 +406,7 @@ a:hover {
     position: absolute;
     top: 50px;
     left: 0;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
+    flex-direction: column;
     width: 100%;
     display: none;
     padding: 5px;
@@ -546,74 +427,53 @@ a:hover {
     width: 0;
   }
   .navbar input[type=checkbox]:checked ~ div span:nth-child(1) {
-    -webkit-transition-delay: 0.3s;
-            transition-delay: 0.3s;
-    -webkit-transform: translateY(15px);
-            transform: translateY(15px);
+    transition-delay: 0.3s;
+    transform: translateY(15px);
   }
   .navbar input[type=checkbox]:checked ~ div span:nth-child(3) {
-    -webkit-transition-delay: 0.3s;
-            transition-delay: 0.3s;
-    -webkit-transform: translateY(-13px) rotate(90deg);
-            transform: translateY(-13px) rotate(90deg);
+    transition-delay: 0.3s;
+    transform: translateY(-13px) rotate(90deg);
   }
   .navbar input[type=checkbox]:checked ~ div {
-    -webkit-transition: all 0.3s cubic-bezier(0.25, 0.01, 0.75, 1);
     transition: all 0.3s cubic-bezier(0.25, 0.01, 0.75, 1);
-    -webkit-transition-delay: 0.7s;
-            transition-delay: 0.7s;
-    -webkit-transform: rotate(315deg);
-            transform: rotate(315deg);
+    transition-delay: 0.7s;
+    transform: rotate(315deg);
   }
   .navbar input[type=checkbox]:checked ~ ul {
     -webkit-animation: growMainMenu 1000ms ease-in-out;
             animation: growMainMenu 1000ms ease-in-out;
-    -webkit-transform-origin: top;
-            transform-origin: top;
+    transform-origin: top;
     display: block;
   }
   .navbar input[type=checkbox]:checked ~ ul li:nth-child(1) {
     -webkit-animation: growMenu 1000ms 60ms ease-in-out;
             animation: growMenu 1000ms 60ms ease-in-out;
-    -webkit-transform-origin: right;
-            transform-origin: right;
+    transform-origin: right;
     display: block;
   }
   .navbar input[type=checkbox]:checked ~ ul li:nth-child(2) {
     -webkit-animation: growMenu 1000ms 120ms ease-in-out;
             animation: growMenu 1000ms 120ms ease-in-out;
-    -webkit-transform-origin: right;
-            transform-origin: right;
+    transform-origin: right;
     display: block;
   }
   .navbar input[type=checkbox]:checked ~ ul li:nth-child(3) {
     -webkit-animation: growMenu 1000ms 180ms ease-in-out;
             animation: growMenu 1000ms 180ms ease-in-out;
-    -webkit-transform-origin: right;
-            transform-origin: right;
+    transform-origin: right;
     display: block;
   }
   .navbar input[type=checkbox]:checked ~ ul li:nth-child(4) {
     -webkit-animation: growMenu 1000ms 240ms ease-in-out;
             animation: growMenu 1000ms 240ms ease-in-out;
-    -webkit-transform-origin: right;
-            transform-origin: right;
+    transform-origin: right;
     display: block;
   }
   .navbar__toggle {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-    -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
     width: 35px;
     height: 35px;
     margin-top: 10px;
@@ -624,12 +484,10 @@ a:hover {
     height: 5px;
     border-radius: 0.15em;
     background-color: #F92C85;
-    -webkit-transition: all 0.3s linear;
     transition: all 0.3s linear;
     margin: 1px;
   }
 }
-
 @media (min-width: 515px) {
   .navbar input {
     display: none;
@@ -638,8 +496,6 @@ a:hover {
     margin: 0;
     padding: 0;
     list-style-type: none;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
   }
   .navbar__list li {
@@ -658,93 +514,70 @@ a:hover {
 }
 
 .header {
-  -ms-grid-row: 2;
   grid-row: 2;
   padding: 3px;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+  flex-direction: row;
 }
 
 .content {
-  -ms-grid-row: 3;
   grid-row: 3;
 }
 
 .footer {
-  -ms-grid-row: 4;
   grid-row: 4;
 }
 
 @-webkit-keyframes growMenu {
   0% {
     opacity: 0;
-    -webkit-transform: scaleX(0);
-            transform: scaleX(0);
+    transform: scaleX(0);
   }
   80% {
-    -webkit-transform: scaleX(1.1);
-            transform: scaleX(1.1);
+    transform: scaleX(1.1);
   }
   100% {
     opacity: 1;
-    -webkit-transform: scaleX(1);
-            transform: scaleX(1);
+    transform: scaleX(1);
   }
 }
 
 @keyframes growMenu {
   0% {
     opacity: 0;
-    -webkit-transform: scaleX(0);
-            transform: scaleX(0);
+    transform: scaleX(0);
   }
   80% {
-    -webkit-transform: scaleX(1.1);
-            transform: scaleX(1.1);
+    transform: scaleX(1.1);
   }
   100% {
     opacity: 1;
-    -webkit-transform: scaleX(1);
-            transform: scaleX(1);
+    transform: scaleX(1);
   }
 }
-
 @-webkit-keyframes growMainMenu {
   0% {
     opacity: 0;
-    -webkit-transform: scaleY(0);
-            transform: scaleY(0);
+    transform: scaleY(0);
   }
   80% {
-    -webkit-transform: scaleY(1.1);
-            transform: scaleY(1.1);
+    transform: scaleY(1.1);
   }
   100% {
     opacity: 1;
-    -webkit-transform: scaleY(1);
-            transform: scaleY(1);
+    transform: scaleY(1);
   }
 }
-
 @keyframes growMainMenu {
   0% {
     opacity: 0;
-    -webkit-transform: scaleY(0);
-            transform: scaleY(0);
+    transform: scaleY(0);
   }
   80% {
-    -webkit-transform: scaleY(1.1);
-            transform: scaleY(1.1);
+    transform: scaleY(1.1);
   }
   100% {
     opacity: 1;
-    -webkit-transform: scaleY(1);
-            transform: scaleY(1);
+    transform: scaleY(1);
   }
-}
-/*# sourceMappingURL=main.css.map */
+}/*# sourceMappingURL=main.css.map */

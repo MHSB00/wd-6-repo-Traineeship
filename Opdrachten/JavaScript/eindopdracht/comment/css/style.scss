@@ -1,0 +1,84 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: bisque;
+}
+
+.root {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.commentSection {
+    width: 50vw;
+    
+    .comment {
+        display: grid;
+        grid-template-columns: 145px 1fr;
+        grid-template-rows: 1;
+        margin-bottom:15px;
+        border-radius: 1rem;
+        
+        .commentUser {
+            grid-column: 1;
+            grid-row: 1;
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            background-color: antiquewhite;
+            border-top-left-radius: 1rem;
+            border-bottom-left-radius: 1rem;
+
+        }
+
+        .commentMsg {
+            grid-column: 2;
+            grid-row: 1;
+            background-color: white;
+            display:grid;
+            grid-template-columns: 1;
+            grid-template-rows: 25px 1fr 25px;
+            padding:5px;
+            border-top-right-radius: 1rem;
+            border-bottom-right-radius: 1rem;
+
+            .commentReplyLink{
+                
+            }
+
+            .commentMsgContent{
+                
+            }
+
+            .commentReplyBtn{
+                text-align:right;
+            }
+        }
+    }
+
+}
+
+.commentDraft {
+    width:50vw;
+    background-color:lightgrey;
+    padding:1rem;
+    border-radius:1rem;
+
+    .replyTo{
+
+    }
+
+    .cancelReply{
+        float:right;
+    }
+
+    textarea{
+        width:100%;
+    }
+}

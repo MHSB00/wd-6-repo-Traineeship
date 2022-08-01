@@ -60,14 +60,9 @@ body {
 
 /* Gallery */
 .gallery {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  flex-wrap: wrap;
+  justify-content: center;
   margin-top: 20px;
 }
 
@@ -121,7 +116,6 @@ nav a {
     width: 270px;
   }
 }
-
 /* @media only screen and (max-width:480px) and (min-width:320px), (orientation: portrait){
 
   .page-title{
@@ -134,49 +128,34 @@ nav a {
   .gallery-item .thumbnail{
     width:95%;
   }
-  
+
 } */
-@media (-webkit-max-device-pixel-ratio: 1.5625) and (max-width: 480px), (max-resolution: 150dpi) and (max-width: 480px) {
+@media (-webkit-max-device-pixel-ratio: 1.5625) and (max-width:480px), (max-resolution: 150dpi) and (max-width:480px) {
   .page-description {
     font-size: 20px;
   }
 }
-
-@media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+@media only screen and (min-width:768px) and (max-width:1024px) and (orientation:landscape) {
   .page-title {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
+    flex-direction: column;
+    align-items: center;
     justify-items: center;
     position: absolute;
     width: 500px;
   }
+
   .gallery {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    _-webkit-box-orient: vertical;
-    _-webkit-box-direction: normal;
-    _    -ms-flex-direction: column;
-    _        flex-direction: column;
-    _-webkit-box-pack: end;
-    _    -ms-flex-pack: end;
-    _        justify-content: flex-end;
+    _flex-direction: column;
+    _justify-content: flex-end;
   }
+
   .main {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
   }
+
   .page-description {
     margin-top: 250px;
   }
-}
-/*# sourceMappingURL=main.css.map */
+}/*# sourceMappingURL=main.css.map */

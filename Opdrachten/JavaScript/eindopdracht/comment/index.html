@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comments</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/main.js" defer></script>
+</head>
+
+<body>
+    <div class="root">
+        <div class="commentSection" data-comment-section>
+                <div class="comment" id="comment1" data-comment-id>
+                <div class="commentUser">
+                    <span class="commentUserAvatar"><img src="img/025.png"></span>
+                    <span class="commentUserName" data-username>username</span>
+                    <span class="commentUserMsgId" data-msgid>#1</span>
+                </div>
+                <div class="commentMsg">
+                    <span class="commentMsgContent">This is a comment</span>
+                    <span class="commentReplyBtn"><button id="btn1" class="replyBtn" data-reply-button>Reply</button></span>
+                </div>
+            </div>
+            <div class="comment" id="comment2" data-comment-id>
+                <div class="commentUser">
+                    <span class="commentUserAvatar"><img src="img/025.png"></span>
+                    <span class="commentUserName" data-username>username2</span>
+                    <span class="commentUserMsgId" data-msgid>#2</span>
+                </div>
+                <div class="commentMsg">
+                    <span class="commentReplyLink" data-reply-link><a href="#comment1">Replying to #1</a></span>
+                    <span class="commentMsgContent">This is a comment</span>
+                    <span class="commentReplyBtn"><button id="btn2" class="replyBtn"
+                            data-reply-button>Reply</button></span>
+                </div>
+            </div>
+        </div>
+        <div class="commentDraft" data-comment-draft>
+            <span class="replyTo" data-reply-to></span>
+            <form data-form>
+                <textarea id="replyMsg" id="msg"></textarea>
+                <input type="text" id="username" required>
+            
+            <button data-submit>Submit</button>
+        </form>
+        </div>
+    </div>
+</body>
+
+</html>
