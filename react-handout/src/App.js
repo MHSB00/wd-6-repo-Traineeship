@@ -1,27 +1,67 @@
-import React, { useState, useRef, useEffect, Component } from 'react';
+//###########################################
+//Handout assignment 1a
+//###########################################
+// import React, { useState} from 'react';
+// import FunComp from './FunComp';
+// import ClassComp from './ClassComp';
+
+// function App() {
+//   const inputRef = useRef();
+//   const [stringIn, setStr] = useState('');
+
+//   function handleOnchange() {
+//     const inputSrc = inputRef.current.value;
+//     setStr(inputSrc);
+//   }
+//   return (
+//     <div className="App">
+//       <input type="text" onChange={handleOnchange} />
+//       <FunComp data={stringIn} />
+//       <ClassComp data={stringIn} />
+//     </div>
+//   );
+// }
+
+// export default App;
+
+//###########################################
+//Handout assignment 1b 
+//###########################################
+// import FunComp from './FunComp';
+// import ClassComp from './ClassComp';
+
+// function App() {
+
+//   return (
+//     <div className="App">
+//       <FunComp />
+//       <ClassComp />
+//     </div>
+//   );
+// }
+
+// export default App;
+
+//###########################################
+//Handout assignment 2 controlled & shared state
+//###########################################
+import React, { useState } from 'react';
 import FunComp from './FunComp';
 import ClassComp from './ClassComp';
 
 function App() {
-  const inputRef = useRef();
-  const [stringIn, setStr] = useState();
-  
+  const [stringIn, setStr] = useState('');
 
-  function handleOnchange() {
-    const inputSrc = inputRef.current.value;
-    if (inputSrc === '') return;
-    setStr(inputSrc);
-
-    //console.log(inputSrc);
+  const getData = (data) => {
+    setStr(data);
   }
+
   return (
     <div className="App">
-      <input ref={inputRef} type="text" onChange={handleOnchange} />
-      <FunComp data={stringIn}/>
-      <ClassComp data={stringIn}/>
+      <FunComp getData={getData} data={stringIn} />
+      <ClassComp data={stringIn} />
     </div>
   );
-  
 }
 
 export default App;
