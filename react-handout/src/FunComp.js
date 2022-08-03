@@ -34,18 +34,13 @@
 //#########################
 //Handout assignment 2 controlled & shared state
 //#########################
-import React from 'react';
+// import React from 'react';
 
-export default function FunComp({ getData, data }) {
-
-    const handleChange = (e) => {
-        getData(e.target.value);
-    }
-
-    return (
-        <div className='funcComp'>
-            This is a functional component: {data}  <br />
-            <input type='text' onChange={handleChange} />
-        </div>
-    )
-}
+// export default function FunComp({ getData, stringIn }) {
+//     return (
+//         <div className='funcComp'>
+//             This is a functional component: {stringIn}  <br />
+//             <input type='text' value={stringIn} onChange={getData} />
+//         </div>
+//     );
+// }

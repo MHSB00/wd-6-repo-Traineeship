@@ -57,17 +57,15 @@
 //########################
 //Handout assignment 2 controlled & shared state
 //########################
-
-
-import React, { Component } from 'react';
-class ClassComp extends Component {
-  render() {
-    return (
-      <div className='classComp'>
-        This is a class component: {this.props.data} <br />
-        <input type='text' value={this.props.data} readOnly />
-      </div>
-    );
-  }
-}
-export default ClassComp;
+// import React, { Component } from 'react';
+// class ClassComp extends Component {
+//   render() {
+//     return (
+//       <div className='classComp'>
+//         This is a class component: {this.props.stringIn} <br />
+//         <input type='text' value={this.props.stringIn} onChange={this.props.getData} />
+//       </div>
+//     );
+//   }
+// }
+// export default ClassComp;
