@@ -6,11 +6,10 @@
 // import ClassComp from './ClassComp';
 
 // function App() {
-//   const inputRef = useRef();
 //   const [stringIn, setStr] = useState('');
 
-//   function handleOnchange() {
-//     const inputSrc = inputRef.current.value;
+//   function handleOnchange(e) {
+//     const inputSrc = e.target.value;
 //     setStr(inputSrc);
 //   }
 //   return (
@@ -56,7 +55,6 @@
 //     setStr(e.target.value);
 //   }
 
-
 //   return (
 //     <div className="App">
 //       <FunComp getData={getData} stringIn={stringIn} />
@@ -70,50 +68,49 @@
 //###########################################
 //Handout assignment 3 Lists and Keys
 //###########################################
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { v4 as uuidv4 } from 'uuid';
+import Tasklist from './Tasklist';
+
+const LOCAL_STORAGE_KEY = 'tasks';
+
 
 function App() {
-
   const [tasks, setTasks] = useState([]);
-  const LOCAL_STORAGE_KEY = 'tasks.todo';
+  const taskRef = useRef(false);
 
   useEffect(() => {
-    const storedTasks = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
-    if (storedTasks) setTasks(storedTasks);
+    if (taskRef.current) { return; }
+    onlyOnce();
+    taskRef.current = true;
   }, []);
 
-  useEffect(() => {
-    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(tasks))
+  const onlyOnce = useEffect(() => {
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(tasks));
   }, [tasks]);
 
-  const handleInput = () => {
-    let input = document.getElementById('input');
-    if (input.value === '') return;
-    setTasks(prevState => {
-      return [{ id: uuidv4(), input: input.value }, ...prevState]
-    });
+  const handleComplete = (id) => {
+    const newTasklist = [...tasks];
+    const compTask = newTasklist.filter(task => task.id !== id);
+    setTasks(compTask);
   }
 
-  const handleComplete = () => {
-
-  };
+  const handleInput = () => {
+    const tasksInput = taskRef.current.value;
+    if (tasksInput === '') return;
+    setTasks(prevTasks => {
+      return [{ id: uuidv4(), input: tasksInput }, ...prevTasks];
+    });
+    taskRef.current.value = null;
+  }
 
   return (
-    <div className='App'>
-      <input id='input' />
+    <>
+      <input ref={taskRef} type='text' />
       <button onClick={handleInput}>Submit</button>
-
-      {tasks.map(task => <div className='blub'>{task.input}<button onChange={handleComplete}>Task Complete!</button></div>)}
-      <TaskList tasks={tasks} />
-    </div>
+      <Tasklist tasks={tasks} handleComplete={handleComplete} />
+    </>
   )
 }
 
-function TaskList(tasks) {
-  return (
-  <div>{tasks.id}</div>
-  )
-}
-
-export default App
+export default App;

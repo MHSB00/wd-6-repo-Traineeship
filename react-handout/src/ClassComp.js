@@ -29,27 +29,23 @@
 // class ClassComp extends Component {
 //     constructor(props) {
 //         super(props);
-//         this.reset();
+//         this.state = { input: '' }
 //     }
-//     reset(){
-//         this.state = {
-//             input: ''
-//         };
-//     }
-//     render() {
-//         return (
-//             <div className='classComp'>
-//                 This is a class component:{this.state.input} <br/>
-//                 <input type='text' onChange={e=> this.handleChange(e)} />
-//             </div>
-//         );
-//     }
-//     handleChange(e){
+//     handleChange(e) {
 //         const val = e.target.value;
 //         this.setState({
 //             input: val
 //         });
 //     }
+//     render() {
+//         return (
+//             <div className='classComp'>
+//                 This is a class component:{this.state.input} <br />
+//                 <input type='text' onChange={e => this.handleChange(e)} />
+//             </div>
+//         );
+//     }
+
 // }
 
 // export default ClassComp;
