@@ -22,9 +22,10 @@ function App() {
     const todo = newTodos.find(todo => todo.id === id);
     todo.complete = !todo.complete;
     setTodos(newTodos);
+
   }
 
-  function handleAddTodo(e) {
+  function handleAddTodo() {
     const name = todoNameRef.current.value;
     if (name === '') return;
     setTodos(prevTodos => {

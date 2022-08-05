@@ -77,17 +77,19 @@ const LOCAL_STORAGE_KEY = 'tasks';
 
 function App() {
   const [tasks, setTasks] = useState([]);
-  const taskRef = useRef(false);
+  const taskRef = useRef();
+  const onlyOnce = useRef(false) //ignore first mount to get localstorage for strictmode
 
   useEffect(() => {
-    if (taskRef.current) { return; }
-    onlyOnce();
-    taskRef.current = true;
+    if (onlyOnce.current) { return; }
+    const storedTasks = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
+    if(storedTasks) setTasks(storedTasks);
+    onlyOnce.current = true;
   }, []);
 
-  const onlyOnce = useEffect(() => {
-    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(tasks));
-  }, [tasks]);
+  useEffect(() => {
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(tasks))
+  }, [tasks])
 
   const handleComplete = (id) => {
     const newTasklist = [...tasks];
