@@ -74,7 +74,6 @@ import Tasklist from './Tasklist';
 
 const LOCAL_STORAGE_KEY = 'tasks';
 
-
 function App() {
   const [tasks, setTasks] = useState([]);
   const taskRef = useRef();
