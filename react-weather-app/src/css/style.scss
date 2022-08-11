@@ -1,0 +1,122 @@
+* {
+    box-sizing: border-box;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Kdam+Thmor+Pro&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Kdam Thmor Pro', sans-serif;
+}
+
+
+.searchWrapper {
+    border: 1px solid #000;
+    text-align: center;
+
+    input {
+        outline: none;
+    }
+
+    .locationWrapper {
+        display: flex;
+        flex-direction: row;
+        border: 1px solid red;
+        justify-content: space-between;
+
+        .location {
+            width: 150px;
+            margin: 5px;
+        }
+
+        .location:hover {
+            background-color: #ccc;
+        }
+    }
+}
+
+.weatherCardContainer {
+    border: 1px solid black;
+
+    .weatherCardLoc {
+        .city {
+            font-size: 3rem;
+        }
+
+        .currentDate {
+            font-size: 2.5rem;
+        }
+    }
+
+    .currentWeather {
+        display: grid;
+        grid-template-columns: 2;
+
+        .currentWeatherLeft {
+            grid-column-start: 1;
+            display: grid;
+            grid-template-columns: 2;
+            grid-template-rows: 2;
+            border: 1px solid red;
+
+            .weatherIcon {
+                grid-column-start: 1;
+                grid-row-start: 2 span;
+
+                img {
+                    width: 200px;
+                }
+            }
+
+            .weatherTemp {
+                grid-column-start: 2;
+                font-size: 5rem;
+            }
+
+            .weatherDesc {
+                grid-column-start: 2;
+            }
+        }
+        .currentWeatherRight{
+            grid-column-start: 2;
+            display:grid;
+            grid-template-columns: 3;
+            grid-template-rows: 3;
+            text-align:center;
+
+            .currentFeels{
+                grid-column-start: 1;
+                grid-row-start: 1;
+                display:flex;
+                flex-direction:column;  
+            }
+            .currentWind{
+                grid-column-start: 2;
+                grid-row-start:1;
+                
+            }
+            .currentSunrise{
+                grid-column-start: 3;
+                grid-row-start:1;
+                
+            }
+            .currentLow{
+                grid-column-start: 1;
+                grid-row-start:2;
+               
+            }
+            .currentRain{
+                grid-column-start: 2;
+                grid-row-start:2;
+                
+            }
+            .currentSunset{
+                grid-column-start: 3;
+                grid-row-start:2;
+                
+            }
+
+        }
+    }
+}

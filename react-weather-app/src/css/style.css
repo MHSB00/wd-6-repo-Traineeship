@@ -1,0 +1,99 @@
+@import url("https://fonts.googleapis.com/css2?family=Kdam+Thmor+Pro&display=swap");
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Kdam Thmor Pro", sans-serif;
+}
+
+.searchWrapper {
+  border: 1px solid #000;
+  text-align: center;
+}
+.searchWrapper input {
+  outline: none;
+}
+.searchWrapper .locationWrapper {
+  display: flex;
+  flex-direction: row;
+  border: 1px solid red;
+  justify-content: space-between;
+}
+.searchWrapper .locationWrapper .location {
+  width: 150px;
+  margin: 5px;
+}
+.searchWrapper .locationWrapper .location:hover {
+  background-color: #ccc;
+}
+
+.weatherCardContainer {
+  border: 1px solid black;
+}
+.weatherCardContainer .weatherCardLoc .city {
+  font-size: 3rem;
+}
+.weatherCardContainer .weatherCardLoc .currentDate {
+  font-size: 2.5rem;
+}
+.weatherCardContainer .currentWeather {
+  display: grid;
+  grid-template-columns: 2;
+}
+.weatherCardContainer .currentWeather .currentWeatherLeft {
+  grid-column-start: 1;
+  display: grid;
+  grid-template-columns: 2;
+  grid-template-rows: 2;
+  border: 1px solid red;
+}
+.weatherCardContainer .currentWeather .currentWeatherLeft .weatherIcon {
+  grid-column-start: 1;
+  grid-row-start: 2 span;
+}
+.weatherCardContainer .currentWeather .currentWeatherLeft .weatherIcon img {
+  width: 200px;
+}
+.weatherCardContainer .currentWeather .currentWeatherLeft .weatherTemp {
+  grid-column-start: 2;
+  font-size: 5rem;
+}
+.weatherCardContainer .currentWeather .currentWeatherLeft .weatherDesc {
+  grid-column-start: 2;
+}
+.weatherCardContainer .currentWeather .currentWeatherRight {
+  grid-column-start: 2;
+  display: grid;
+  grid-template-columns: 3;
+  grid-template-rows: 3;
+  text-align: center;
+}
+.weatherCardContainer .currentWeather .currentWeatherRight .currentFeels {
+  grid-column-start: 1;
+  grid-row-start: 1;
+  display: flex;
+  flex-direction: column;
+}
+.weatherCardContainer .currentWeather .currentWeatherRight .currentWind {
+  grid-column-start: 2;
+  grid-row-start: 1;
+}
+.weatherCardContainer .currentWeather .currentWeatherRight .currentSunrise {
+  grid-column-start: 3;
+  grid-row-start: 1;
+}
+.weatherCardContainer .currentWeather .currentWeatherRight .currentLow {
+  grid-column-start: 1;
+  grid-row-start: 2;
+}
+.weatherCardContainer .currentWeather .currentWeatherRight .currentRain {
+  grid-column-start: 2;
+  grid-row-start: 2;
+}
+.weatherCardContainer .currentWeather .currentWeatherRight .currentSunset {
+  grid-column-start: 3;
+  grid-row-start: 2;
+}/*# sourceMappingURL=style.css.map */

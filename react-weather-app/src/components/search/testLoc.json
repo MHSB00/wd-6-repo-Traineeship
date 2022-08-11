@@ -1,0 +1,68 @@
+[
+    {
+        "name": "Groningen",
+        "local_names": {
+            "lv": "Groningena",
+            "nl": "Groningen",
+            "es": "Groninga",
+            "ru": "Гронинген",
+            "it": "Groninga",
+            "uk": "Гронінген",
+            "de": "Groningen",
+            "sr": "Гронинген",
+            "ar": "خرونينغن",
+            "fr": "Groningue",
+            "hu": "Groningen",
+            "ja": "フローニンゲン",
+            "en": "Groningen",
+            "pt": "Groningen",
+            "eo": "Groningo",
+            "zh": "格罗宁根",
+            "la": "Groninga",
+            "fy": "Grins"
+        },
+        "lat": 53.2190652,
+        "lon": 6.5680077,
+        "country": "NL",
+        "state": "Groningen"
+    },
+    {
+        "name": "Groningen",
+        "local_names": {
+            "ar": "خرونينغن",
+            "eo": "Groningo",
+            "fr": "Groningue",
+            "nl": "Groningen"
+        },
+        "lat": 53.2096623,
+        "lon": 6.572754276302019,
+        "country": "NL",
+        "state": "Groningen"
+    },
+    {
+        "name": "Gröningen",
+        "local_names": {
+            "ru": "Грёнинген",
+            "ba": "Грёнинген",
+            "de": "Gröningen"
+        },
+        "lat": 51.9363717,
+        "lon": 11.2166312,
+        "country": "DE",
+        "state": "Saxony-Anhalt"
+    },
+    {
+        "name": "Groningen",
+        "lat": 5.7934347,
+        "lon": -55.4763243,
+        "country": "SR",
+        "state": "Saramacca"
+    },
+    {
+        "name": "Groningen",
+        "lat": 46.1507815,
+        "lon": -92.9240911,
+        "country": "US",
+        "state": "Minnesota"
+    }
+]
