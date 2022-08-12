@@ -1,16 +1,19 @@
 @import url("https://fonts.googleapis.com/css2?family=Kdam+Thmor+Pro&display=swap");
-* {
+*, *::before, ::after {
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
   padding: 0;
+  height: 100vh;
   font-family: "Kdam Thmor Pro", sans-serif;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .searchWrapper {
-  border: 1px solid #000;
   text-align: center;
 }
 .searchWrapper input {
@@ -19,19 +22,24 @@ body {
 .searchWrapper .locationWrapper {
   display: flex;
   flex-direction: row;
-  border: 1px solid red;
   justify-content: space-between;
 }
 .searchWrapper .locationWrapper .location {
-  width: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
   margin: 5px;
+  padding: 5px;
 }
 .searchWrapper .locationWrapper .location:hover {
   background-color: #ccc;
 }
 
-.weatherCardContainer {
-  border: 1px solid black;
+.weatherCardContainer .weatherCardLoc {
+  color: white;
+  padding: 5px;
 }
 .weatherCardContainer .weatherCardLoc .city {
   font-size: 3rem;
@@ -48,11 +56,14 @@ body {
   display: grid;
   grid-template-columns: 2;
   grid-template-rows: 2;
-  border: 1px solid red;
+  color: white;
 }
 .weatherCardContainer .currentWeather .currentWeatherLeft .weatherIcon {
   grid-column-start: 1;
   grid-row-start: 2 span;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .weatherCardContainer .currentWeather .currentWeatherLeft .weatherIcon img {
   width: 200px;
@@ -60,9 +71,24 @@ body {
 .weatherCardContainer .currentWeather .currentWeatherLeft .weatherTemp {
   grid-column-start: 2;
   font-size: 5rem;
+  background: rgba(255, 255, 255, 0.4);
+  padding: 5px;
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+  margin-top: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 .weatherCardContainer .currentWeather .currentWeatherLeft .weatherDesc {
   grid-column-start: 2;
+  background: rgba(255, 255, 255, 0.4);
+  border-bottom-left-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
+  padding: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  color: black;
 }
 .weatherCardContainer .currentWeather .currentWeatherRight {
   grid-column-start: 2;
@@ -70,30 +96,66 @@ body {
   grid-template-columns: 3;
   grid-template-rows: 3;
   text-align: center;
+  background: rgba(255, 255, 255, 0.4);
+  padding: 5px;
+  margin: 5px;
+  border-radius: 0.25rem;
 }
 .weatherCardContainer .currentWeather .currentWeatherRight .currentFeels {
   grid-column-start: 1;
   grid-row-start: 1;
   display: flex;
   flex-direction: column;
+  justify-content: center;
 }
 .weatherCardContainer .currentWeather .currentWeatherRight .currentWind {
   grid-column-start: 2;
   grid-row-start: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .weatherCardContainer .currentWeather .currentWeatherRight .currentSunrise {
   grid-column-start: 3;
   grid-row-start: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
-.weatherCardContainer .currentWeather .currentWeatherRight .currentLow {
+.weatherCardContainer .currentWeather .currentWeatherRight .currentHumidity {
   grid-column-start: 1;
   grid-row-start: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
-.weatherCardContainer .currentWeather .currentWeatherRight .currentRain {
+.weatherCardContainer .currentWeather .currentWeatherRight .currentPressure {
   grid-column-start: 2;
   grid-row-start: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .weatherCardContainer .currentWeather .currentWeatherRight .currentSunset {
   grid-column-start: 3;
   grid-row-start: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.weatherCardContainer .weatherForecastWrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.weatherCardContainer .weatherForecastWrapper .weatherForecastDay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 200px;
+  height: 200px;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 0.25rem;
+  margin: 5px;
 }/*# sourceMappingURL=style.css.map */

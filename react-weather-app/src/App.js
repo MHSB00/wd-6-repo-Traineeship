@@ -1,7 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Search from './components/search/Search';
 import WeatherData from './components/weather/WeatherData';
-import CurrentLoc from './components/current/CurrentLoc';
 import './css/style.css';
 
 function App() {
@@ -15,13 +14,8 @@ function App() {
     const locName = name;
     const locCountry = country;
 
-    const x = document.querySelector('.locationWrapper');
-    
-    //x.style.display = 'none';
-
     setSelectedLocation([latitude, longitude, locName, locCountry])
   }
-
 
   return (
     <>
