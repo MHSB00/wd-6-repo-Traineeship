@@ -24,8 +24,17 @@ body {
   min-width: 100%;
   min-height: 100%;
   z-index: -1;
-  transition: 200ms opacity ease-in-out;
+  opacity: 0;
+  transition: 400ms opacity ease-in-out;
   transition-delay: 200ms;
+}
+
+.video[data-active] {
+  opacity: 1;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
 }
 
 .wrapper {

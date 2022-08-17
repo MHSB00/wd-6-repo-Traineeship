@@ -15,7 +15,7 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     overflow: hidden;
-    background-color:#7c92bc;
+    background-color: #7c92bc;
 }
 
 .video {
@@ -25,12 +25,19 @@ body {
     min-width: 100%;
     min-height: 100%;
     z-index: -1;
-    transition: 200ms opacity ease-in-out;
-    transition-delay:200ms;
+    opacity: 0;
+    transition: 400ms opacity ease-in-out;
+    transition-delay: 200ms;
+}
+
+.video[data-active] {
+    opacity: 1;
+    object-fit: cover;
+    object-position: center;
 }
 
 .wrapper {
-    display:flex;
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;

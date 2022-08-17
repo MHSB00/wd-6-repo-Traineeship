@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import Search from './components/search/Search';
 import WeatherData from './components/weather/WeatherData';
 import Video from './components/video/Video';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 import './css/style.css';
 
@@ -32,13 +32,13 @@ function App() {
         setVid("/assets/clouds.mp4");
         break;
       case 'Snow':
-        setVid("/assets/clear.mp4");
+        setVid("/assets/snow.mp4");
         break;
       case 'Rain':
-        setVid("/assets/clear.mp4");
+        setVid("/assets/rain.mp4");
         break;
       case 'Thunderstorm':
-        setVid("/assets/clear.mp4");
+        setVid("/assets/thunderstorm.mp4");
         break;
       default:
         setVid("/assets/ocean.mp4");
@@ -50,7 +50,9 @@ function App() {
 
   return (
     <>
-    <Video vid={vid} coords={selectedLocation}/>
+      <AnimatePresence>
+        <Video vid={vid} coords={selectedLocation} />
+      </AnimatePresence>
       <div className='wrapper'>
         <Search dataFromChild={dataFromChild} />
         <WeatherData coords={selectedLocation} getVid={getVid} />
