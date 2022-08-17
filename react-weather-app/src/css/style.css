@@ -1,5 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Kdam+Thmor+Pro&display=swap");
-*, *::before, ::after {
+*,
+*::before,
+::after {
   box-sizing: border-box;
 }
 
@@ -11,20 +13,39 @@ body {
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+  overflow: hidden;
+  background-color: #7c92bc;
 }
 
-.searchWrapper {
+.video {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  z-index: -1;
+  transition: 200ms opacity ease-in-out;
+  transition-delay: 200ms;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.wrapper .searchWrapper {
   text-align: center;
 }
-.searchWrapper input {
+.wrapper .searchWrapper input {
   outline: none;
 }
-.searchWrapper .locationWrapper {
+.wrapper .searchWrapper .locationWrapper {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
 }
-.searchWrapper .locationWrapper .location {
+.wrapper .searchWrapper .locationWrapper .location {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -33,42 +54,38 @@ body {
   margin: 5px;
   padding: 5px;
 }
-.searchWrapper .locationWrapper .location:hover {
-  background-color: #ccc;
-}
-
-.weatherCardContainer .weatherCardLoc {
+.wrapper .weatherCardContainer .weatherCardLoc {
   color: white;
   padding: 5px;
 }
-.weatherCardContainer .weatherCardLoc .city {
+.wrapper .weatherCardContainer .weatherCardLoc .city {
   font-size: 3rem;
 }
-.weatherCardContainer .weatherCardLoc .currentDate {
+.wrapper .weatherCardContainer .weatherCardLoc .currentDate {
   font-size: 2.5rem;
 }
-.weatherCardContainer .currentWeather {
+.wrapper .weatherCardContainer .currentWeather {
   display: grid;
   grid-template-columns: 2;
 }
-.weatherCardContainer .currentWeather .currentWeatherLeft {
+.wrapper .weatherCardContainer .currentWeather .currentWeatherLeft {
   grid-column-start: 1;
   display: grid;
   grid-template-columns: 2;
-  grid-template-rows: 2;
+  grid-template-rows: 1;
   color: white;
 }
-.weatherCardContainer .currentWeather .currentWeatherLeft .weatherIcon {
+.wrapper .weatherCardContainer .currentWeather .currentWeatherLeft .weatherIcon {
   grid-column-start: 1;
   grid-row-start: 2 span;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.weatherCardContainer .currentWeather .currentWeatherLeft .weatherIcon img {
+.wrapper .weatherCardContainer .currentWeather .currentWeatherLeft .weatherIcon img {
   width: 200px;
 }
-.weatherCardContainer .currentWeather .currentWeatherLeft .weatherTemp {
+.wrapper .weatherCardContainer .currentWeather .currentWeatherLeft .weatherTemp {
   grid-column-start: 2;
   font-size: 5rem;
   background: rgba(255, 255, 255, 0.4);
@@ -79,7 +96,7 @@ body {
   margin-left: 5px;
   margin-right: 5px;
 }
-.weatherCardContainer .currentWeather .currentWeatherLeft .weatherDesc {
+.wrapper .weatherCardContainer .currentWeather .currentWeatherLeft .weatherDesc {
   grid-column-start: 2;
   background: rgba(255, 255, 255, 0.4);
   border-bottom-left-radius: 0.25rem;
@@ -90,7 +107,7 @@ body {
   margin-bottom: 5px;
   color: black;
 }
-.weatherCardContainer .currentWeather .currentWeatherRight {
+.wrapper .weatherCardContainer .currentWeather .currentWeatherRight {
   grid-column-start: 2;
   display: grid;
   grid-template-columns: 3;
@@ -101,54 +118,54 @@ body {
   margin: 5px;
   border-radius: 0.25rem;
 }
-.weatherCardContainer .currentWeather .currentWeatherRight .currentFeels {
+.wrapper .weatherCardContainer .currentWeather .currentWeatherRight .currentFeels {
   grid-column-start: 1;
   grid-row-start: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
-.weatherCardContainer .currentWeather .currentWeatherRight .currentWind {
+.wrapper .weatherCardContainer .currentWeather .currentWeatherRight .currentWind {
   grid-column-start: 2;
   grid-row-start: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
-.weatherCardContainer .currentWeather .currentWeatherRight .currentSunrise {
+.wrapper .weatherCardContainer .currentWeather .currentWeatherRight .currentSunrise {
   grid-column-start: 3;
   grid-row-start: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
-.weatherCardContainer .currentWeather .currentWeatherRight .currentHumidity {
+.wrapper .weatherCardContainer .currentWeather .currentWeatherRight .currentHumidity {
   grid-column-start: 1;
   grid-row-start: 2;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
-.weatherCardContainer .currentWeather .currentWeatherRight .currentPressure {
+.wrapper .weatherCardContainer .currentWeather .currentWeatherRight .currentPressure {
   grid-column-start: 2;
   grid-row-start: 2;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
-.weatherCardContainer .currentWeather .currentWeatherRight .currentSunset {
+.wrapper .weatherCardContainer .currentWeather .currentWeatherRight .currentSunset {
   grid-column-start: 3;
   grid-row-start: 2;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
-.weatherCardContainer .weatherForecastWrapper {
+.wrapper .weatherCardContainer .weatherForecastWrapper {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
-.weatherCardContainer .weatherForecastWrapper .weatherForecastDay {
+.wrapper .weatherCardContainer .weatherForecastWrapper .weatherForecastDay {
   display: flex;
   justify-content: center;
   align-items: center;

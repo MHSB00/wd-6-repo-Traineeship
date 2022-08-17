@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
 import dayjs from 'dayjs';
 import { v4 as uuidv4 } from 'uuid';
+import { motion } from 'framer-motion';
 
-export default function WeatherData({ coords }) {
+
+export default function WeatherData({coords, getVid}) {
     const locName = coords[2]
     const locCountry = coords[3]
-    const [currentWeather, setCurrentWeather] = useState('');
-
-
+    const [currentWeather, setCurrentWeather] = useState();
+    const [animated, setAnimated] = useState(1);
+    console.log(coords);
     useEffect(() => {
         if (!coords) return;
         const latitude = coords[0];
@@ -16,10 +18,26 @@ export default function WeatherData({ coords }) {
             .then(res => res.json())
             .then(data => {
                 setCurrentWeather(data);
+
+            })
+            .catch((error)=>{
+                console.error('Error:', error);
             })
     }, [coords])
 
+    useEffect(()=>{
+        if(!currentWeather) return;
+        getVid(currentWeather.current.weather[0].main)
+    },[coords])
+
+    useEffect(() => {
+        setAnimated(Math.random())
+
+    }, [currentWeather])
+
+
     if (!currentWeather) return;
+
 
     //current
     const currentDate = currentWeather.current.dt;
@@ -34,66 +52,78 @@ export default function WeatherData({ coords }) {
     const humidity = currentWeather.current.humidity;
     const pressure = currentWeather.current.pressure;
     const sunset = dayjs.unix(currentWeather.current.sunset);
+   
 
     //forecast
     const dailyArray = currentWeather.daily;
 
-    switch (desc) {
-        case 'Clear':
-            document.body.style.backgroundImage = "url(assets/img/clearsky.jpg)";
-            break;
-        case 'Clouds':
-            document.body.style.backgroundImage = "url(assets/img/clouds.jpg)";
-            break;
-        case 'Snow':
-            document.body.style.backgroundImage = "url(assets/img/snow.jpg)";
-            break;
-        case 'Rain':
-            document.body.style.backgroundImage = "url(assets/img/rain.jpg)";
-            break;
-        case 'Thunderstorm':
-            document.body.style.backgroundImage = "url(assets/img/thunderstorm.jpg)";
-            break;
-        default:
-            document.body.style.backgroundImage = "url(assets/img/clearsky.jpg)";
-            break;
-    }
     return (
         <>
             <div className="weatherCardContainer">
-                <div className="weatherCardLoc">
+                <di className="weatherCardLoc">
                     <div className="city">{locName}, {locCountry}</div>
                     <div className="currentDate">{dayjs(date).format('dddd D MMMM')}</div>
-                </div>
+                </di>
                 <div className="currentWeather">
-                    <div className="currentWeatherLeft">
+                    <motion.div whileHover={{ scale: 1.1, border: '1px solid white', transition: { duration: 0.2 } }} className="currentWeatherLeft">
                         <div className="weatherIcon"><img src={imgURL} alt={wdesc}></img></div>
-                        <div className="weatherTemp">{temp} &#8451;</div>
+                        <div className="weatherTemp" >{temp} &#8451;</div>
                         <div className="weatherDesc">{wdesc}</div>
-                    </div>
-                    <div className="currentWeatherRight">
+
+                    </motion.div>
+                    <motion.div whileHover={{ scale: 1.1, border: '1px solid white', transition: { duration: 0.2 } }} className="currentWeatherRight">
                         <div className="currentFeels"><span>Feels Like</span>{feelsLike}℃ </div>
                         <div className="currentWind"><span>Wind</span>{wind} km/h</div>
                         <div className="currentSunrise"><span>Sunrise</span>{dayjs(sunrise).format('HH:mm')}</div>
                         <div className="currentHumidity"><span>Humidity</span>{humidity}%</div>
                         <div className="currentPressure"><span>Pressure</span>{pressure} hPa</div>
                         <div className="currentSunset"><span>Sunset</span>{dayjs(sunset).format('HH:mm')}</div>
-                    </div>
+                    </motion.div>
                 </div>
-                <div className="weatherForecastWrapper">
+                <motion.div key={animated} variants={parent} animate={'show'} initial="hide" className="weatherForecastWrapper">
                     {
                         dailyArray && dailyArray.map(days => (
-                            <div key={uuidv4()} className="weatherForecastDay">
+                            <motion.div variants={children} whileHover={{ scale: 1.2, border: '1px solid white', transition: { duration: 0.2 } }} key={uuidv4()} className="weatherForecastDay">
                                 {dayjs(dayjs.unix(days.dt)).format('D MMM')}
                                 <img src={`http://openweathermap.org/img/wn/${days.weather[0].icon}@2x.png`} alt={wdesc} />
                                 min: {Math.round(days.temp.min * 10) / 10} ℃
                                 <br />
                                 max: {Math.round(days.temp.max * 10) / 10} ℃
-                            </div>
+                            </motion.div>
                         ))
                     }
-                </div>
+                </motion.div>
             </div>
         </>
     );
+
 }
+
+export const parent = {
+    show: {
+        opacity: 1,
+        transition: {
+            when: "beforeChildren",
+            staggerChildren: 0.3,
+        },
+    },
+    hide: {
+        opacity: 0,
+        transition: {
+            when: "afterChildren",
+        },
+    }
+};
+
+export const children = {
+    show: {
+        opacity: 1,
+        transition: {
+            ease: 'easeOut',
+            duration: 1
+        }
+    },
+    hide: {
+        opacity: 0
+    }
+};
