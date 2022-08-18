@@ -3,7 +3,7 @@ import Flag from 'react-world-flags';
 import { v4 as uuidv4 } from 'uuid';
 import _ from 'lodash';
 import { motion } from 'framer-motion';
-
+import testLoc from './testLoc.json'
 
 export default function Search({ dataFromChild }) {
     const [selection, setSelection] = useState('');
@@ -11,23 +11,28 @@ export default function Search({ dataFromChild }) {
     const limit = 5;
     const locRef = useRef();
 
+
+    //API
+    // useEffect(() => {
+    //     if (!selection) return;
+    //     fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${selection}&limit=${limit}&appid=${process.env.REACT_APP_API_KEY}`)
+    //         .then(res => res.json())
+    //         .then(data => {
+    //             setLocation(data);
+
+    //         })
+    //         .catch((error)=>{
+    //             console.error('Error:', error);
+    //         })
+    // }, [selection])
+
+
+    //JSON 
     useEffect(() => {
         if (!selection) return;
-        fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${selection}&limit=${limit}&appid=${process.env.REACT_APP_API_KEY}`)
-            .then(res => res.json())
-            .then(data => {
-                setLocation(data);
-            })
-            .catch((error)=>{
-                console.error('Error:', error);
-            })
+        setLocation(testLoc);
     }, [selection])
 
-    // for (let i = 0; i < location.length; i++) {
-    //     if ((location[i]?.name === location[i + 1]?.name) && (location[i]?.country === location[i + 1]?.country)) {
-    //         location.splice(i + 1, 1)
-    //     }
-    // }
 
     let newObj = location;
     const posAr = [];
@@ -47,7 +52,7 @@ export default function Search({ dataFromChild }) {
 
     return (
         <div key={uuidv4()} className='searchWrapper'>
-            <input key={uuidv4()} ref={locRef} />
+            <input key={uuidv4()} ref={locRef} autoFocus />
             <button key={uuidv4()} onClick={() => setSelection(locRef?.current.value)}>Search</button>
             <div key={uuidv4()} className='locationWrapper'>
                 {
@@ -61,7 +66,7 @@ export default function Search({ dataFromChild }) {
                     Object.entries(newObj).map(loc => {
                         return (
                             <>
-                                <motion.div key={uuidv4()} className='location' onClick={(e) => dataFromChild(loc[1].lat, loc[1].lon, loc[1].name, loc[1].country)} whileHover={{scale:1.5, transition:{duration:0.2}}}>{loc[1].name} <Flag code={loc[1].country} height='50'/></motion.div>
+                                <motion.div key={uuidv4()} className='location' onClick={(e) => dataFromChild(loc[1].lat, loc[1].lon, loc[1].name, loc[1].country)} whileHover={{ scale: 1.5, transition: { duration: 0.2 } }}>{loc[1].name} <Flag code={loc[1].country} height='50' /></motion.div>
                             </>
                         )
                     })

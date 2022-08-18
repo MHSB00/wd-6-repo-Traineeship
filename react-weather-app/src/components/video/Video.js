@@ -1,5 +1,4 @@
 import { useRef, useLayoutEffect } from 'react';
-import { motion } from 'framer-motion';
 
 export default function Video({ vid }) {
 
@@ -9,8 +8,6 @@ export default function Video({ vid }) {
         const videos = document.querySelectorAll('video')
         const active = document.querySelector('[data-active]');
         //console.log(active.src.replace(active.baseURI, ''));
-
-        console.log(vid);
 
         if (!vid) return;
         const vidURL = "assets/" + vid + ".mp4";

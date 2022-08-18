@@ -45,6 +45,7 @@ body {
 }
 .wrapper .searchWrapper {
   text-align: center;
+  margin-top: 20px;
 }
 .wrapper .searchWrapper input {
   outline: none;
@@ -53,6 +54,7 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  margin-top: 20px;
 }
 .wrapper .searchWrapper .locationWrapper .location {
   display: flex;
@@ -62,6 +64,9 @@ body {
   width: 200px;
   margin: 5px;
   padding: 5px;
+}
+.wrapper .weatherCardContainer {
+  margin-top: 20px;
 }
 .wrapper .weatherCardContainer .weatherCardLoc {
   color: white;

@@ -22,7 +22,7 @@ function App() {
   }
 
   const getcWeather = (current) =>{
-    setVid(current.current.weather[0].main)
+    setVid(current.current.weather[0].main);
   }
 
   return (

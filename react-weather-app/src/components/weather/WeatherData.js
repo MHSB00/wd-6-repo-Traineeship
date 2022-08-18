@@ -2,27 +2,36 @@ import { useEffect, useState } from "react";
 import dayjs from 'dayjs';
 import { v4 as uuidv4 } from 'uuid';
 import { motion } from 'framer-motion';
-
+import testWeather from './testWeather.json';
 
 export default function WeatherData({ coords, getcWeather }) {
     const locName = coords[2]
     const locCountry = coords[3]
     const [currentWeather, setCurrentWeather] = useState();
-    const [animated, setAnimated] = useState(1);
+
+
+
+    //API
+    // useEffect(() => {
+    //     if (!coords) return;
+    //     const latitude = coords[0];
+    //     const longitude = coords[1];
+    //     fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&units=metric&exclude=minutely,hourly&appid=${process.env.REACT_APP_API_KEY}`)
+    //         .then(res => res.json())
+    //         .then(data => {
+    //             setCurrentWeather(data);
+    //             getcWeather(data);
+    //         })
+    //         .catch((error) => {
+    //             alert(`Error has occurred! `, error)
+    //         })
+    // }, [coords])
+
 
     useEffect(() => {
         if (!coords) return;
-        const latitude = coords[0];
-        const longitude = coords[1];
-        fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&units=metric&exclude=minutely,hourly&appid=${process.env.REACT_APP_API_KEY}`)
-            .then(res => res.json())
-            .then(data => {
-                setCurrentWeather(data);
-                getcWeather(data);
-            })
-            .catch((error) => {
-                alert(`Error has occurred! `, error)
-            })
+        setCurrentWeather(testWeather);
+        getcWeather(testWeather);
     }, [coords])
 
 
@@ -68,7 +77,7 @@ export default function WeatherData({ coords, getcWeather }) {
                         <div className="currentSunset"><span>Sunset</span>{dayjs(sunset).format('HH:mm')}</div>
                     </motion.div>
                 </div>
-                <motion.div key={animated} variants={parent} animate={'show'} initial="hide"className="weatherForecastWrapper">
+                <motion.div variants={parent} animate={'show'} initial="hide" className="weatherForecastWrapper">
                     {
                         dailyArray && dailyArray.map(days => (
                             <motion.div key={uuidv4()} variants={children}  whileHover={'hover'} className="weatherForecastDay">
