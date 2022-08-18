@@ -1,52 +1,29 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Search from './components/search/Search';
 import WeatherData from './components/weather/WeatherData';
 import Video from './components/video/Video';
-import { motion, AnimatePresence } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 
 import './css/style.css';
+
 
 function App() {
 
   const [selectedLocation, setSelectedLocation] = useState('');
-  const [vid, setVid] = useState('assets/ocean.mp4');
+  const [vid, setVid] = useState('');
 
   //get coords from child
-  const dataFromChild = (lat, lon, name, country, e) => {
+  const dataFromChild = (lat, lon, name, country) => {
     const latitude = lat.toFixed(2);
     const longitude = lon.toFixed(2);
     const locName = name;
     const locCountry = country;
-
     setSelectedLocation([latitude, longitude, locName, locCountry])
   }
 
-  //get weather desc from child
-  const getVid = (desc) => {
-
-    switch (desc) {
-      case 'Clear':
-        setVid("/assets/clear.mp4");
-        break;
-      case 'Clouds':
-        setVid("/assets/clouds.mp4");
-        break;
-      case 'Snow':
-        setVid("/assets/snow.mp4");
-        break;
-      case 'Rain':
-        setVid("/assets/rain.mp4");
-        break;
-      case 'Thunderstorm':
-        setVid("/assets/thunderstorm.mp4");
-        break;
-      default:
-        setVid("/assets/ocean.mp4");
-        break;
-    }
-
+  const getcWeather = (current) =>{
+    setVid(current.current.weather[0].main)
   }
-
 
   return (
     <>
@@ -55,11 +32,10 @@ function App() {
       </AnimatePresence>
       <div className='wrapper'>
         <Search dataFromChild={dataFromChild} />
-        <WeatherData coords={selectedLocation} getVid={getVid} />
+        <WeatherData coords={selectedLocation} getcWeather={getcWeather}/>
       </div>
     </>
   );
 }
-
 
 export default App;

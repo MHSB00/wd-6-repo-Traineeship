@@ -4,12 +4,12 @@ import { v4 as uuidv4 } from 'uuid';
 import { motion } from 'framer-motion';
 
 
-export default function WeatherData({coords, getVid}) {
+export default function WeatherData({ coords, getcWeather }) {
     const locName = coords[2]
     const locCountry = coords[3]
     const [currentWeather, setCurrentWeather] = useState();
     const [animated, setAnimated] = useState(1);
-    console.log(coords);
+
     useEffect(() => {
         if (!coords) return;
         const latitude = coords[0];
@@ -18,33 +18,21 @@ export default function WeatherData({coords, getVid}) {
             .then(res => res.json())
             .then(data => {
                 setCurrentWeather(data);
-
+                getcWeather(data);
             })
-            .catch((error)=>{
-                console.error('Error:', error);
+            .catch((error) => {
+                alert(`Error has occurred! `, error)
             })
     }, [coords])
 
-    useEffect(()=>{
-        if(!currentWeather) return;
-        getVid(currentWeather.current.weather[0].main)
-    },[coords])
-
-    useEffect(() => {
-        setAnimated(Math.random())
-
-    }, [currentWeather])
-
 
     if (!currentWeather) return;
-
 
     //current
     const currentDate = currentWeather.current.dt;
     const date = dayjs.unix(currentDate)
     const imgURL = 'http://openweathermap.org/img/wn/' + currentWeather.current.weather[0].icon + '@2x.png';
     const temp = Math.round(currentWeather.current.temp * 10) / 10;
-    const desc = currentWeather.current.weather[0].main;
     const wdesc = currentWeather.current.weather[0].description;
     const feelsLike = Math.round(currentWeather.current.feels_like * 10) / 10;
     const wind = currentWeather.current.wind_speed;
@@ -52,7 +40,7 @@ export default function WeatherData({coords, getVid}) {
     const humidity = currentWeather.current.humidity;
     const pressure = currentWeather.current.pressure;
     const sunset = dayjs.unix(currentWeather.current.sunset);
-   
+
 
     //forecast
     const dailyArray = currentWeather.daily;
@@ -60,10 +48,10 @@ export default function WeatherData({coords, getVid}) {
     return (
         <>
             <div className="weatherCardContainer">
-                <di className="weatherCardLoc">
+                <div className="weatherCardLoc">
                     <div className="city">{locName}, {locCountry}</div>
                     <div className="currentDate">{dayjs(date).format('dddd D MMMM')}</div>
-                </di>
+                </div>
                 <div className="currentWeather">
                     <motion.div whileHover={{ scale: 1.1, border: '1px solid white', transition: { duration: 0.2 } }} className="currentWeatherLeft">
                         <div className="weatherIcon"><img src={imgURL} alt={wdesc}></img></div>
@@ -80,10 +68,10 @@ export default function WeatherData({coords, getVid}) {
                         <div className="currentSunset"><span>Sunset</span>{dayjs(sunset).format('HH:mm')}</div>
                     </motion.div>
                 </div>
-                <motion.div key={animated} variants={parent} animate={'show'} initial="hide" className="weatherForecastWrapper">
+                <motion.div key={animated} variants={parent} animate={'show'} initial="hide"className="weatherForecastWrapper">
                     {
                         dailyArray && dailyArray.map(days => (
-                            <motion.div variants={children} whileHover={{ scale: 1.2, border: '1px solid white', transition: { duration: 0.2 } }} key={uuidv4()} className="weatherForecastDay">
+                            <motion.div key={uuidv4()} variants={children}  whileHover={'hover'} className="weatherForecastDay">
                                 {dayjs(dayjs.unix(days.dt)).format('D MMM')}
                                 <img src={`http://openweathermap.org/img/wn/${days.weather[0].icon}@2x.png`} alt={wdesc} />
                                 min: {Math.round(days.temp.min * 10) / 10} ℃
@@ -120,10 +108,15 @@ export const children = {
         opacity: 1,
         transition: {
             ease: 'easeOut',
-            duration: 1
+            duration: 1,
         }
     },
     hide: {
-        opacity: 0
+        opacity: 0,
+    },
+    hover: {
+        scale:1.2,
+        border:'1px solid white',
     }
+
 };
