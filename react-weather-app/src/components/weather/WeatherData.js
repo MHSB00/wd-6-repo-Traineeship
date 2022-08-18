@@ -10,7 +10,6 @@ export default function WeatherData({ coords, getcWeather }) {
     const [currentWeather, setCurrentWeather] = useState();
 
 
-
     //API
     // useEffect(() => {
     //     if (!coords) return;
@@ -35,6 +34,7 @@ export default function WeatherData({ coords, getcWeather }) {
     }, [coords])
 
 
+
     if (!currentWeather) return;
 
     //current
@@ -50,9 +50,9 @@ export default function WeatherData({ coords, getcWeather }) {
     const pressure = currentWeather.current.pressure;
     const sunset = dayjs.unix(currentWeather.current.sunset);
 
-
     //forecast
     const dailyArray = currentWeather.daily;
+
 
     return (
         <>
@@ -66,7 +66,6 @@ export default function WeatherData({ coords, getcWeather }) {
                         <div className="weatherIcon"><img src={imgURL} alt={wdesc}></img></div>
                         <div className="weatherTemp" >{temp} &#8451;</div>
                         <div className="weatherDesc">{wdesc}</div>
-
                     </motion.div>
                     <motion.div whileHover={{ scale: 1.1, border: '1px solid white', transition: { duration: 0.2 } }} className="currentWeatherRight">
                         <div className="currentFeels"><span>Feels Like</span>{feelsLike}℃ </div>
@@ -77,10 +76,10 @@ export default function WeatherData({ coords, getcWeather }) {
                         <div className="currentSunset"><span>Sunset</span>{dayjs(sunset).format('HH:mm')}</div>
                     </motion.div>
                 </div>
-                <motion.div variants={parent} animate={'show'} initial="hide" className="weatherForecastWrapper">
+                <motion.div variants={parent} animate="show" initial="hide" className="weatherForecastWrapper">
                     {
-                        dailyArray && dailyArray.map(days => (
-                            <motion.div key={uuidv4()} variants={children}  whileHover={'hover'} className="weatherForecastDay">
+                        dailyArray && dailyArray.map((days, i) => (
+                            <motion.div key={uuidv4()} variants={x} initial='hide' animate={{ opacity: 1, transition: { duration: 0.3, delay: i * 0.2 } }} whileHover='hover' className="weatherForecastDay">
                                 {dayjs(dayjs.unix(days.dt)).format('D MMM')}
                                 <img src={`http://openweathermap.org/img/wn/${days.weather[0].icon}@2x.png`} alt={wdesc} />
                                 min: {Math.round(days.temp.min * 10) / 10} ℃
@@ -107,7 +106,7 @@ export const parent = {
     hide: {
         opacity: 0,
         transition: {
-            when: "afterChildren",
+            when: "beforeChildren",
         },
     }
 };
@@ -123,9 +122,21 @@ export const children = {
     hide: {
         opacity: 0,
     },
-    hover: {
-        scale:1.2,
-        border:'1px solid white',
-    }
 
+};
+export const x = {
+    show: {
+        opacity: 1,
+        transition: {
+            ease: 'easeOut',
+            duration: 1,
+        }
+    },
+    hide: {
+        opacity: 0,
+    },
+    hover: {
+        scale: 1.2,
+        border: '1px solid white'
+    }
 };
