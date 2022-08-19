@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import dayjs from 'dayjs';
 import { v4 as uuidv4 } from 'uuid';
-import { motion } from 'framer-motion';
-import testWeather from './testWeather.json';
+import { motion, useSpring } from 'framer-motion';
+// import testWeather from './testWeather.json';
 
 export default function WeatherData({ coords, getcWeather }) {
     const locName = coords[2]
@@ -10,28 +10,28 @@ export default function WeatherData({ coords, getcWeather }) {
     const [currentWeather, setCurrentWeather] = useState();
 
 
-    //API
-    // useEffect(() => {
-    //     if (!coords) return;
-    //     const latitude = coords[0];
-    //     const longitude = coords[1];
-    //     fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&units=metric&exclude=minutely,hourly&appid=${process.env.REACT_APP_API_KEY}`)
-    //         .then(res => res.json())
-    //         .then(data => {
-    //             setCurrentWeather(data);
-    //             getcWeather(data);
-    //         })
-    //         .catch((error) => {
-    //             alert(`Error has occurred! `, error)
-    //         })
-    // }, [coords])
-
-
+    ////API
     useEffect(() => {
         if (!coords) return;
-        setCurrentWeather(testWeather);
-        getcWeather(testWeather);
+        const latitude = coords[0];
+        const longitude = coords[1];
+        fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&units=metric&exclude=minutely,hourly&appid=${process.env.REACT_APP_API_KEY}`)
+            .then(res => res.json())
+            .then(data => {
+                setCurrentWeather(data);
+                getcWeather(data);
+            })
+            .catch((error) => {
+                alert(`Error has occurred! `, error)
+            })
     }, [coords])
+
+    ////JSON
+    // useEffect(() => {
+    //     if (!coords) return;
+    //     setCurrentWeather(testWeather);
+    //     getcWeather(testWeather);
+    // }, [coords])
 
 
 
@@ -40,7 +40,7 @@ export default function WeatherData({ coords, getcWeather }) {
     //current
     const currentDate = currentWeather.current.dt;
     const date = dayjs.unix(currentDate)
-    const imgURL = 'http://openweathermap.org/img/wn/' + currentWeather.current.weather[0].icon + '@2x.png';
+    const imgURL = 'https://openweathermap.org/img/wn/' + currentWeather.current.weather[0].icon + '@2x.png';
     const temp = Math.round(currentWeather.current.temp * 10) / 10;
     const wdesc = currentWeather.current.weather[0].description;
     const feelsLike = Math.round(currentWeather.current.feels_like * 10) / 10;
@@ -56,7 +56,7 @@ export default function WeatherData({ coords, getcWeather }) {
 
     return (
         <>
-            <div className="weatherCardContainer">
+            <motion.div variants={main} animate="show" initial="hide" className="weatherCardContainer">
                 <div className="weatherCardLoc">
                     <div className="city">{locName}, {locCountry}</div>
                     <div className="currentDate">{dayjs(date).format('dddd D MMMM')}</div>
@@ -81,7 +81,7 @@ export default function WeatherData({ coords, getcWeather }) {
                         dailyArray && dailyArray.map((days, i) => (
                             <motion.div key={uuidv4()} variants={x} initial='hide' animate={{ opacity: 1, transition: { duration: 0.3, delay: i * 0.2 } }} whileHover='hover' className="weatherForecastDay">
                                 {dayjs(dayjs.unix(days.dt)).format('D MMM')}
-                                <img src={`http://openweathermap.org/img/wn/${days.weather[0].icon}@2x.png`} alt={wdesc} />
+                                <img src={`https://openweathermap.org/img/wn/${days.weather[0].icon}@2x.png`} alt={wdesc} />
                                 min: {Math.round(days.temp.min * 10) / 10} ℃
                                 <br />
                                 max: {Math.round(days.temp.max * 10) / 10} ℃
@@ -89,41 +89,40 @@ export default function WeatherData({ coords, getcWeather }) {
                         ))
                     }
                 </motion.div>
-            </div>
+            </motion.div>
         </>
     );
-
 }
 
 export const parent = {
     show: {
-        opacity: 1,
         transition: {
+            duration:2,
             when: "beforeChildren",
             staggerChildren: 0.3,
         },
+        opacity: 1,
     },
     hide: {
-        opacity: 0,
         transition: {
             when: "beforeChildren",
         },
+        opacity: 0,
     }
 };
-
-export const children = {
+export const main = {
     show: {
         opacity: 1,
         transition: {
-            ease: 'easeOut',
-            duration: 1,
-        }
+            duration:2,
+        },
     },
     hide: {
         opacity: 0,
-    },
-
+    }
 };
+
+
 export const x = {
     show: {
         opacity: 1,

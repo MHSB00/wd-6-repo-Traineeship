@@ -42,8 +42,10 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: 100vh;
 }
 .wrapper .searchWrapper {
+  justify-content: center;
   text-align: center;
   margin-top: 20px;
 }

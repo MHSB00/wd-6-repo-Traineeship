@@ -2,8 +2,7 @@ import { useState } from 'react';
 import Search from './components/search/Search';
 import WeatherData from './components/weather/WeatherData';
 import Video from './components/video/Video';
-import { AnimatePresence } from 'framer-motion';
-
+import { motion } from 'framer-motion';
 import './css/style.css';
 
 
@@ -21,21 +20,31 @@ function App() {
     setSelectedLocation([latitude, longitude, locName, locCountry])
   }
 
-  const getcWeather = (current) =>{
+  const getcWeather = (current) => {
     setVid(current.current.weather[0].main);
   }
 
   return (
     <>
-      <AnimatePresence>
-        <Video vid={vid} coords={selectedLocation} />
-      </AnimatePresence>
-      <div className='wrapper'>
+      <Video vid={vid} coords={selectedLocation} />
+      <motion.div variants={parent} animate="show" initial="hide" className='wrapper'>
         <Search dataFromChild={dataFromChild} />
-        <WeatherData coords={selectedLocation} getcWeather={getcWeather}/>
-      </div>
+        <WeatherData coords={selectedLocation} getcWeather={getcWeather} />
+      </motion.div>
     </>
   );
 }
 
 export default App;
+
+export const parent = {
+  show: {
+      opacity: 1,
+      transition: {
+        duration:1.5
+      },
+  },
+  hide: {
+      opacity: 0,
+  }
+};
