@@ -17,11 +17,11 @@ function App() {
     const longitude = lon.toFixed(2);
     const locName = name;
     const locCountry = country;
-    setSelectedLocation([latitude, longitude, locName, locCountry])
+    setSelectedLocation([latitude, longitude, locName, locCountry]);
   }
 
-  const getcWeather = (current) => {
-    setVid(current.current.weather[0].main);
+  const getcWeather = (data) => {
+    setVid(data);
   }
 
   return (

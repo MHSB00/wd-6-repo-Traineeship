@@ -1,14 +1,12 @@
 import { useEffect, useState } from "react";
 import dayjs from 'dayjs';
-import { v4 as uuidv4 } from 'uuid';
-import { motion, useSpring } from 'framer-motion';
+import { motion } from 'framer-motion';
 // import testWeather from './testWeather.json';
 
 export default function WeatherData({ coords, getcWeather }) {
-    const locName = coords[2]
-    const locCountry = coords[3]
+    const locName = coords[2];
+    const locCountry = coords[3];
     const [currentWeather, setCurrentWeather] = useState();
-
 
     ////API
     useEffect(() => {
@@ -19,7 +17,7 @@ export default function WeatherData({ coords, getcWeather }) {
             .then(res => res.json())
             .then(data => {
                 setCurrentWeather(data);
-                getcWeather(data);
+                getcWeather(data.current.weather[0].main);
             })
             .catch((error) => {
                 alert(`Error has occurred! `, error)
@@ -32,8 +30,6 @@ export default function WeatherData({ coords, getcWeather }) {
     //     setCurrentWeather(testWeather);
     //     getcWeather(testWeather);
     // }, [coords])
-
-
 
     if (!currentWeather) return;
 
@@ -53,7 +49,6 @@ export default function WeatherData({ coords, getcWeather }) {
     //forecast
     const dailyArray = currentWeather.daily;
 
-
     return (
         <>
             <motion.div variants={main} animate="show" initial="hide" className="weatherCardContainer">
@@ -62,12 +57,12 @@ export default function WeatherData({ coords, getcWeather }) {
                     <div className="currentDate">{dayjs(date).format('dddd D MMMM')}</div>
                 </div>
                 <div className="currentWeather">
-                    <motion.div whileHover={{ scale: 1.1, border: '1px solid white', transition: { duration: 0.2 } }} className="currentWeatherLeft">
+                    <motion.div whileHover={{ scale: 1.1, border: '1px solid #fff', transition: { duration: 0.2 } }} className="currentWeatherLeft">
                         <div className="weatherIcon"><img src={imgURL} alt={wdesc}></img></div>
                         <div className="weatherTemp" >{temp} &#8451;</div>
                         <div className="weatherDesc">{wdesc}</div>
                     </motion.div>
-                    <motion.div whileHover={{ scale: 1.1, border: '1px solid white', transition: { duration: 0.2 } }} className="currentWeatherRight">
+                    <motion.div whileHover={{scale: 1.1, border: '1px solid #fff', transition: { duration: 0.2 } }} className="currentWeatherRight">
                         <div className="currentFeels"><span>Feels Like</span>{feelsLike}℃ </div>
                         <div className="currentWind"><span>Wind</span>{wind} km/h</div>
                         <div className="currentSunrise"><span>Sunrise</span>{dayjs(sunrise).format('HH:mm')}</div>
@@ -79,7 +74,7 @@ export default function WeatherData({ coords, getcWeather }) {
                 <motion.div variants={parent} animate="show" initial="hide" className="weatherForecastWrapper">
                     {
                         dailyArray && dailyArray.map((days, i) => (
-                            <motion.div key={uuidv4()} variants={x} initial='hide' animate={{ opacity: 1, transition: { duration: 0.3, delay: i * 0.2 } }} whileHover='hover' className="weatherForecastDay">
+                            <motion.div key={i} variants={x} initial='hide' animate={{ opacity: 1, transition: { duration: 0.3, delay: i * 0.2 } }} whileHover='hover' className="weatherForecastDay">
                                 {dayjs(dayjs.unix(days.dt)).format('D MMM')}
                                 <img src={`https://openweathermap.org/img/wn/${days.weather[0].icon}@2x.png`} alt={wdesc} />
                                 min: {Math.round(days.temp.min * 10) / 10} ℃
@@ -136,6 +131,7 @@ export const x = {
     },
     hover: {
         scale: 1.2,
-        border: '1px solid white'
+        backgroundColor:'#fff',
+        border: '1px solid #fff'
     }
 };

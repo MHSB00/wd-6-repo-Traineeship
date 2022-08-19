@@ -9,13 +9,12 @@
 body {
     margin: 0;
     padding: 0;
-    height: 100vh;
     font-family: 'Kdam Thmor Pro', sans-serif;
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    overflow: hidden;
     background-color: #7c92bc;
+    overflow-x: hidden;
+
+    display: flex;
+    justify-content: center;
 }
 
 .video {
@@ -37,44 +36,52 @@ body {
 }
 
 .wrapper {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height:100vh;
+    max-width:120em;
 
     .searchWrapper {
-        justify-content: center;
+        display: flex;
+        flex-direction: column;
         text-align: center;
-        margin-top:20px;
-        
-        input {
+        justify-content: center;
+        margin-top: 1.3rem;
+        flex-wrap: wrap;
+        margin-left: 2rem;
+        margin-right: 2rem;
+
+        input,
+        button {
             outline: none;
+            margin: auto;
+            width:10rem;
         }
 
         .locationWrapper {
             display: flex;
             flex-direction: row;
             justify-content: space-around;
-            margin-top:20px;
+            margin-top: 1.3rem;
+            flex-wrap: wrap;
 
             .location {
                 display: flex;
                 flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                width: 200px;
-                margin: 5px;
-                padding: 5px;
+                width: 13rem;
+                margin: 0.3rem;
+                padding: 0.3rem;
             }
         }
     }
 
     .weatherCardContainer {
-        margin-top:20px;
+        display: flex;
+        flex-direction: column;
+        margin-top: 1.3rem;
+        margin-left: 2rem;
+        margin-right: 2rem;
+
         .weatherCardLoc {
             color: white;
-            padding: 5px;
+            padding: 0.3rem;
 
             .city {
                 font-size: 3rem;
@@ -86,108 +93,81 @@ body {
         }
 
         .currentWeather {
-            display: grid;
-            grid-template-columns: 2;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-around;
 
             .currentWeatherLeft {
-                grid-column-start: 1;
-                display: grid;
-                grid-template-columns: 2;
-                grid-template-rows: 1;
+                flex-grow: 1;
                 color: white;
+                margin: 0.6rem;
 
                 .weatherIcon {
-                    grid-column-start: 1;
-                    grid-row-start: 2 span;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
 
                     img {
-                        width: 200px;
+                        width: 13rem;
                     }
                 }
 
                 .weatherTemp {
-                    grid-column-start: 2;
                     font-size: 5rem;
                     background: rgba(#fff, 0.4);
-                    padding: 5px;
+                    padding: 0.3rem;
                     border-top-left-radius: 0.25rem;
                     border-top-right-radius: 0.25rem;
-                    margin-top: 5px;
-                    margin-left: 5px;
-                    margin-right: 5px;
                 }
 
                 .weatherDesc {
-                    grid-column-start: 2;
                     background: rgba(#fff, 0.4);
                     border-bottom-left-radius: 0.25rem;
                     border-bottom-right-radius: 0.25rem;
-                    padding: 5px;
-                    margin-left: 5px;
-                    margin-right: 5px;
-                    margin-bottom: 5px;
+                    padding: 0.3rem;
                     color: black;
                 }
             }
 
             .currentWeatherRight {
-                grid-column-start: 2;
-                display: grid;
-                grid-template-columns: 3;
-                grid-template-rows: 3;
+                flex-grow: 1.2;
                 text-align: center;
                 background: rgba(#fff, 0.4);
-                padding: 5px;
-                margin: 5px;
+                padding: 0.3rem;
+                margin: 0.6rem;
                 border-radius: 0.25rem;
-
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
 
                 .currentFeels {
-                    grid-column-start: 1;
-                    grid-row-start: 1;
                     display: flex;
                     flex-direction: column;
                     justify-content: center;
                 }
 
                 .currentWind {
-                    grid-column-start: 2;
-                    grid-row-start: 1;
                     display: flex;
                     flex-direction: column;
                     justify-content: center;
                 }
 
                 .currentSunrise {
-                    grid-column-start: 3;
-                    grid-row-start: 1;
                     display: flex;
                     flex-direction: column;
                     justify-content: center;
                 }
 
                 .currentHumidity {
-                    grid-column-start: 1;
-                    grid-row-start: 2;
                     display: flex;
                     flex-direction: column;
                     justify-content: center;
                 }
 
                 .currentPressure {
-                    grid-column-start: 2;
-                    grid-row-start: 2;
                     display: flex;
                     flex-direction: column;
                     justify-content: center;
                 }
 
                 .currentSunset {
-                    grid-column-start: 3;
-                    grid-row-start: 2;
                     display: flex;
                     flex-direction: column;
                     justify-content: center;
@@ -198,18 +178,19 @@ body {
         .weatherForecastWrapper {
             display: flex;
             flex-direction: row;
+            flex-wrap: wrap;
             justify-content: space-between;
 
             .weatherForecastDay {
                 display: flex;
-                justify-content: center;
+                justify-content: space-around;
                 align-items: center;
                 flex-direction: column;
-                width: 200px;
-                height: 200px;
+                width: 13rem;
+                height: 13rem;
                 background: rgba(#fff, 0.4);
                 border-radius: 0.25rem;
-                margin: 5px;
+                margin: 0.3rem;
             }
 
         }
