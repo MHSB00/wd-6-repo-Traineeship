@@ -135,7 +135,7 @@ Maak het vorige voorbeeld na - een lijst met keys waarvan het laatst toegevoegde
 
 Zoals je inmiddels wel door hebt kan je in React met state/props ontzettend veel bereiken. Maar niet alles zal je daarmee lukken. Wat als je event listeners toe wil voegen, of data wil verzoeken van een server? Als je dat zomaar in een component plopt zal die code draaien elke keer dat je component rendert. 50 kopieën van dezelfde event listener of hetzelfde dataverzoek is toch een stuk minder optimaal!
 
-Dit soort taken noemt React **Side Effects**, en React heeft bepaalde methods waarbinnen ze willen dat je dit soort Side Effects laat uitvoeren. Voor Class Components zijn dit de** Lifecycle Methods**, voor Functional Components is dit de **useEffect** hook.
+Dit soort taken noemt React **Side Effects**, en React heeft bepaalde methods waarbinnen ze willen dat je dit soort Side Effects laat uitvoeren. Voor Class Components zijn dit de **Lifecycle Methods**, voor Functional Components is dit de **useEffect** hook.
 
 Lifecycle methods beschrijven het “leven” van een component op je pagina. Als een component aan je pagina wordt toegevoegd/verwijderd noemt React dit mounting/unmounting. Wil je hier meer over weten? [Hier](https://reactjs.org/docs/react-component.html) de documentatie met alle Lifecycle methods. De belangrijkste daarvan zijn als volgt:
 
