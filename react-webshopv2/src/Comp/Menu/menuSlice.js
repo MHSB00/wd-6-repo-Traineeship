@@ -1,17 +1,16 @@
-import { createSlice, CreateSlice } from "@reduxjs/toolkit";
-import { decrement, increment } from "../../features/counter/counterSlice";
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     progress:0
 }
 
 export const menuSlice = createSlice({
-    name: 'menuProgress',
+    name: 'menuScrollProgress',
     initialState,
     reducers: {
-        updateScrollProgress: (state, action) =>{
-            state.push(action.payload);
-        },
+        updateScrollProgress(state, action){
+            state.progress = action.payload;
+        }
     }
 })
 

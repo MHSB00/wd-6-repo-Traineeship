@@ -8,8 +8,8 @@ import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
 import Badge from '@mui/material/Badge';
-import { useRef, useState } from 'react';
-import{useSelector, useDispatch} from 'react-redux';
+import { useRef, } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { updateScrollProgress } from './menuSlice';
 
 
@@ -73,36 +73,38 @@ const ScrollProgress = styled.div`
     height:0.3rem;
     background-color:black;
     width:0%;
+    transition: 0.5s;
 `
 
 function Menu() {
 
-    const [stateScrollProgress, setStateScrollProgress] = useState();
+    const stateScrollProgress = useSelector((state) => state.menu.progress);
 
-    const progress = useSelector((state) => state.menuSlice.updateScrollProgress);
     const dispatch = useDispatch();
 
     let prevScrollPos = window.scrollY;
     const menuRef = useRef();
     const scrollProgress = useRef();
 
-
     window.onscroll = () => {
         const currentScrollPos = window.scrollY;
         let scrollHeight = window.document.scrollingElement.scrollHeight - document.documentElement.clientHeight;
         let winScroll = document.documentElement.scrollTop || document.body.scrollTop;
-        let scrolled = (winScroll / scrollHeight) * 100;
+        let scrolled = Math.round((winScroll / scrollHeight) * 100);
+
+        //just to practice redux
+        dispatch(updateScrollProgress({ progress: scrolled }));
 
         if (prevScrollPos > currentScrollPos) {
             menuRef.current.style.top = 0;
             scrollProgress.current.style.width = '0%';
         } else {
             menuRef.current.style.top = '-11.7rem';
-            scrollProgress.current.style.width = scrolled + '%';
-            dispatch(updateScrollProgress({progress: scrolled}));
-        }
-        prevScrollPos = currentScrollPos;
+            scrollProgress.current.style.width = stateScrollProgress.progress + '%';
 
+        }
+
+        prevScrollPos = currentScrollPos;
     }
 
 
