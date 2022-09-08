@@ -1,14 +1,15 @@
 import React from 'react';
 import Menu from './Comp/Menu/Menu';
-import firebaseInit from "../src/app/firebase";
-
+import Carousel from './Comp/Carousel/Carousel';
 
 function App() {
   return (
     <div className="App">
-      <Menu/>
+      <Menu />
+      <Carousel />
     </div>
   );
 }
 
 export default App;
+

@@ -8,10 +8,13 @@ import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
 import Badge from '@mui/material/Badge';
-import { useRef, } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { updateScrollProgress } from './menuSlice';
-
+import { updateScrollProgress, setMenuItems } from './menuSlice';
+import { collection, getDocs, doc } from "firebase/firestore";
+import { getMenuItems } from '../../app/getMenu'
+import { onLog } from 'firebase/app';
+import { getNativeSelectUtilityClasses } from '@mui/material';
 
 const MenuContainer = styled.div`
     position:fixed;
@@ -33,20 +36,16 @@ const MenuTop = styled.div`
     align-items:center;
     width:90%;
 `
-
 const ContactInfo = styled.div`
     
 `
-
 const SubMenu = styled.div`
 
 `
-
 const ShopName = styled.div`
     font-weight:bold;
     font-size:2rem;
 `
-
 const MenuBottom = styled.div`
     display:flex;
     align-items:center;
@@ -54,21 +53,28 @@ const MenuBottom = styled.div`
     height:100%;
     width:90%;
     justify-content:center;
+
+`
+const DropDownMenu = styled.div`
+    display:block;
+    width:100%;
+    height:500px;
+    border:1px solid red;
+    
 `
 const StyledList = styled.ul`
     list-style:none;
 `
-
 const StyledLI = styled.li`
     display:inline-block;
     padding:1rem;
+ 
 `
 
 const ScrollContainer = styled.div`
     height:0.3rem;
     width:100%;
 `
-
 const ScrollProgress = styled.div`
     height:0.3rem;
     background-color:black;
@@ -76,16 +82,46 @@ const ScrollProgress = styled.div`
     transition: 0.5s;
 `
 
+
 function Menu() {
 
     const stateScrollProgress = useSelector((state) => state.menu.progress);
+    const [menuLoad, setMenuLoad] = useState(true)
 
     const dispatch = useDispatch();
+    //set menu items in state
+    useEffect(() => {
+        if (!menuLoad) return;
+        getMenuItems().then((data) => {
+            data.forEach((item) => {
+                dispatch(setMenuItems({ id: item.id, name: item.name }));
+            })
+            setMenuLoad(false)
+        })
+    }, [menuLoad])
+
+
+
+
 
     let prevScrollPos = window.scrollY;
     const menuRef = useRef();
     const scrollProgress = useRef();
 
+    //get menu items
+    // const getMenuItems = async () => {
+    //     const ref = await getDocs(collection(db, "subMenu/Brands/Brand"));
+    //     const doc = ref.docs.map(doc => doc.data())
+
+    //     console.log(doc);
+    // }
+
+
+
+    const stateMenu = useSelector((state) => state.menu.subMenu);
+
+
+    //menu scroll
     window.onscroll = () => {
         const currentScrollPos = window.scrollY;
         let scrollHeight = window.document.scrollingElement.scrollHeight - document.documentElement.clientHeight;
@@ -106,7 +142,6 @@ function Menu() {
 
         prevScrollPos = currentScrollPos;
     }
-
 
     return (
         <MenuContainer ref={menuRef}>
@@ -138,9 +173,16 @@ function Menu() {
             <ScrollContainer>
                 <ScrollProgress ref={scrollProgress} />
             </ScrollContainer>
+            <DropDownMenu>
+                {
+                    stateMenu.map((menuItems, index) => {
+                        return <div key={index}>{menuItems.name}</div>
+                    })
+                }
+            </DropDownMenu>
         </MenuContainer>
 
     )
 }
 
-export default Menu
+export default Menu;
