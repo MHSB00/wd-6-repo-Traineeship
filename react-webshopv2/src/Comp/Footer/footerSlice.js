@@ -20,11 +20,8 @@ export const footerSlice = createSlice({
         setFooterItemsCompany(state, action) {
            state.company.push(action.payload);
         },
-
-
     }
 })
-
 
 export const {setFooterItemsExplore, setFooterItemsService, setFooterItemsCompany} = footerSlice.actions;
 

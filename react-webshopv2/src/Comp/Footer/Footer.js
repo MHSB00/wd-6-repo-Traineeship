@@ -9,8 +9,8 @@ const FooterContainer = styled.div`
     display:flex;
     flex-direction:row;
     justify-content:space-around;
-    border:1px solid red;
-
+    border:0px solid red;
+    
 `
 const Explore = styled.div`
 
@@ -30,6 +30,7 @@ const StyledList = styled.ul`
 `
 const StyledLI = styled.li`
     margin-left:-40px
+    
 `
 
 
@@ -58,7 +59,6 @@ const Footer = () => {
                 <FooterTitle>EXPLORE</FooterTitle>
                 <StyledList>
                     {
-                        
                         stateFooter.explore.map((footerItems) => {
                             //console.log(footerItems);
                             return footerItems.map((links, index) => {

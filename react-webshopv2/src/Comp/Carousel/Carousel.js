@@ -2,18 +2,34 @@ import React from 'react';
 import styled from 'styled-components';
 
 const CarouselContainer = styled.div`
-    width:100%;
-    height:75vh;
-    border:0px solid red;
+    overflow-x: hidden;
+    z-index:-1;
+    .video{
+        min-width: 100%;
+        min-height: 100%;
+        object-fit:cover;
+       
+    }
 `
 
 function Carousel() {
 
-    return ( 
+    return (
         <CarouselContainer>
-            
+            <video
+                key='ocean'
+                preload='true'
+                autoPlay
+                loop
+                muted
+                className='video'
+                id="player"
+                src="assets/watch.mp4"
+                type='video/mp4'
+            >
+            </video>
         </CarouselContainer>
-     );
+    );
 }
 
 export default Carousel;

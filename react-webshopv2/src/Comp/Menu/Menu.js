@@ -11,10 +11,11 @@ import Badge from '@mui/material/Badge';
 import { useRef, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateScrollProgress, setMenuItems } from './menuSlice';
-import { getMenuItems } from '../../app/getMenu'
+import { getMenuItems } from '../../app/getMenu';
 
 const MenuContainer = styled.div`
     position:fixed;
+    background-color:white;
     top:0;
     width:100%;
     display:flex;
@@ -22,6 +23,7 @@ const MenuContainer = styled.div`
     flex-direction:column;
     min-height:12rem;
     transition: top 1s;
+    z-index:1
 
 `
 const MenuTop = styled.div`
@@ -53,9 +55,7 @@ const MenuBottom = styled.div`
 
 `
 const DropDownMenu = styled.div`
-    width:100%;
-    border:1px solid red;
-    
+    width:100%;   
 `
 const StyledList = styled.ul`
     list-style:none;
