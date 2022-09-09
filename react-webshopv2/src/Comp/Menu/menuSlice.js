@@ -2,7 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     progress: 0,
-    subMenu: []
+    subMenu: [],
+    subMenuShow: false
 }
 
 export const menuSlice = createSlice({
@@ -13,8 +14,9 @@ export const menuSlice = createSlice({
             state.progress = action.payload;
         },
         setMenuItems(state, action) {
-           state.subMenu.push(action.payload)
-        }
+           state.subMenu.push(action.payload);
+        },
+
 
     }
 })

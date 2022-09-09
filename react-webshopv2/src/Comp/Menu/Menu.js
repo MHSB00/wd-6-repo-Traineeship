@@ -11,10 +11,7 @@ import Badge from '@mui/material/Badge';
 import { useRef, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateScrollProgress, setMenuItems } from './menuSlice';
-import { collection, getDocs, doc } from "firebase/firestore";
 import { getMenuItems } from '../../app/getMenu'
-import { onLog } from 'firebase/app';
-import { getNativeSelectUtilityClasses } from '@mui/material';
 
 const MenuContainer = styled.div`
     position:fixed;
@@ -23,7 +20,7 @@ const MenuContainer = styled.div`
     display:flex;
     align-items:center;
     flex-direction:column;
-    height:12rem;
+    min-height:12rem;
     transition: top 1s;
 
 `
@@ -56,9 +53,7 @@ const MenuBottom = styled.div`
 
 `
 const DropDownMenu = styled.div`
-    display:block;
     width:100%;
-    height:500px;
     border:1px solid red;
     
 `
@@ -68,7 +63,6 @@ const StyledList = styled.ul`
 const StyledLI = styled.li`
     display:inline-block;
     padding:1rem;
- 
 `
 
 const ScrollContainer = styled.div`
@@ -86,9 +80,10 @@ const ScrollProgress = styled.div`
 function Menu() {
 
     const stateScrollProgress = useSelector((state) => state.menu.progress);
-    const [menuLoad, setMenuLoad] = useState(true)
-
+    const [menuLoad, setMenuLoad] = useState(true);
+    const [subMenuShow, setSubMenuShow] = useState(false);
     const dispatch = useDispatch();
+
     //set menu items in state
     useEffect(() => {
         if (!menuLoad) return;
@@ -99,26 +94,21 @@ function Menu() {
             setMenuLoad(false)
         })
     }, [menuLoad])
+    const stateMenu = useSelector((state) => state.menu.subMenu);
 
-
-
-
+    //trigger dropdown
+    const handeOnMouseOver = () => {
+        //dispatch(setHoverSubMenu({ subMenuShow: true }));
+        setSubMenuShow(true)
+    }
+    const handeOnMouseLeave = () => {
+        //dispatch(setHoverSubMenu({ subMenuShow: false }));
+        setSubMenuShow(false)
+    }
 
     let prevScrollPos = window.scrollY;
     const menuRef = useRef();
     const scrollProgress = useRef();
-
-    //get menu items
-    // const getMenuItems = async () => {
-    //     const ref = await getDocs(collection(db, "subMenu/Brands/Brand"));
-    //     const doc = ref.docs.map(doc => doc.data())
-
-    //     console.log(doc);
-    // }
-
-
-
-    const stateMenu = useSelector((state) => state.menu.subMenu);
 
 
     //menu scroll
@@ -130,16 +120,13 @@ function Menu() {
 
         //just to practice redux
         dispatch(updateScrollProgress({ progress: scrolled }));
-
         if (prevScrollPos > currentScrollPos) {
             menuRef.current.style.top = 0;
             scrollProgress.current.style.width = '0%';
         } else {
             menuRef.current.style.top = '-11.7rem';
             scrollProgress.current.style.width = stateScrollProgress.progress + '%';
-
         }
-
         prevScrollPos = currentScrollPos;
     }
 
@@ -163,7 +150,7 @@ function Menu() {
             </MenuTop>
             <MenuBottom>
                 <StyledList>
-                    <StyledLI>BRANDS</StyledLI>
+                    <StyledLI onMouseOver={handeOnMouseOver} onMouseLeave={handeOnMouseLeave}>BRANDS</StyledLI>
                     <StyledLI>NEW ARRIVALS</StyledLI>
                     <StyledLI>ALL WATCHES</StyledLI>
                     <StyledLI>SELL & TRADE</StyledLI>
@@ -173,13 +160,15 @@ function Menu() {
             <ScrollContainer>
                 <ScrollProgress ref={scrollProgress} />
             </ScrollContainer>
-            <DropDownMenu>
-                {
-                    stateMenu.map((menuItems, index) => {
-                        return <div key={index}>{menuItems.name}</div>
-                    })
-                }
-            </DropDownMenu>
+            {subMenuShow && (
+                <DropDownMenu>
+                    {
+                        stateMenu.map((menuItems, index) => {
+                            return <div key={index}>{menuItems.name}</div>
+                        })
+                    }
+                </DropDownMenu>
+            )}
         </MenuContainer>
 
     )
