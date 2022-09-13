@@ -64,7 +64,6 @@ const StyledLI = styled.li`
     display:inline-block;
     padding:1rem;
 `
-
 const ScrollContainer = styled.div`
     height:0.3rem;
     width:100%;

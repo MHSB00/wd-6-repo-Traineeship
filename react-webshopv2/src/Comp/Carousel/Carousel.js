@@ -16,8 +16,7 @@ function Carousel() {
 
     return (
         <CarouselContainer>
-            <video
-                key='ocean'
+            <video key='watch'
                 preload='true'
                 autoPlay
                 loop
