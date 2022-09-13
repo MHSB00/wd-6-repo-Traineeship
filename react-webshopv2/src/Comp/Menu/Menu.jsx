@@ -12,6 +12,7 @@ import { useRef, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateScrollProgress, setMenuItems } from './menuSlice';
 import { getMenuItems } from '../../app/getMenu';
+import { Link } from 'react-router-dom'
 
 const MenuContainer = styled.div`
     position:fixed;
@@ -77,22 +78,22 @@ const ScrollProgress = styled.div`
 
 
 function Menu() {
-
+    let menuLoad = false;
     const stateScrollProgress = useSelector((state) => state.menu.progress);
-    const [menuLoad, setMenuLoad] = useState(true);
     const [subMenuShow, setSubMenuShow] = useState(false);
     const dispatch = useDispatch();
 
     //set menu items in state
     useEffect(() => {
-        if (!menuLoad) return;
-        getMenuItems().then((data) => {
-            data.forEach((item) => {
-                dispatch(setMenuItems({ id: item.id, name: item.name }));
+        if (!menuLoad) {
+            menuLoad = true;
+            getMenuItems().then((data) => {
+                data.forEach((item) => {
+                    dispatch(setMenuItems({ id: item.id, name: item.name }));
+                })
             })
-            setMenuLoad(false)
-        })
-    }, [menuLoad])
+        }
+    }, [])
     const stateMenu = useSelector((state) => state.menu.subMenu);
 
     //trigger dropdown
@@ -137,10 +138,10 @@ function Menu() {
                     <CallOutlinedIcon fontSize='large' /> +31 123 456 7890
                     <WhatsAppIcon fontSize='large' /> +31 098 765 4321
                 </ContactInfo>
-                <ShopName>WATCHSHOP</ShopName>
+                <Link to='/'><ShopName>WATCHSHOP</ShopName></Link>
                 <SubMenu>
                     <SearchOutlinedIcon fontSize='large' />
-                    <PersonOutlineOutlinedIcon fontSize='large' />
+                    <Link to='/signin'><PersonOutlineOutlinedIcon fontSize='large' /></Link>
                     <FavoriteBorderOutlinedIcon fontSize='large' />
                     <Badge>
                         <ShoppingBagOutlinedIcon fontSize='large' />

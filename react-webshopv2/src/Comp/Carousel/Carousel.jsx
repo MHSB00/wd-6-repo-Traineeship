@@ -8,12 +8,10 @@ const CarouselContainer = styled.div`
         min-width: 100%;
         min-height: 100%;
         object-fit:cover;
-       
     }
 `
 
 function Carousel() {
-
     return (
         <CarouselContainer>
             <video key='watch'

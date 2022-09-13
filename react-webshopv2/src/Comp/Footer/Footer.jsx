@@ -35,20 +35,21 @@ const StyledLI = styled.li`
 
 
 const Footer = () => {
-    const [footerLoad, setFooterLoad] = useState(true);
-
+    let footerLoad = false;
     const dispatch = useDispatch();
 
     //set footer items in state
     useEffect(() => {
-        if (!footerLoad) return;
-        getFooterItems().then((data) => {
-            dispatch(setFooterItemsExplore(data.explore));
-            dispatch(setFooterItemsService(data.service));
-            dispatch(setFooterItemsCompany(data.company));
-        })
-        setFooterLoad(false)
-    }, [footerLoad])
+        if (!footerLoad) {
+            footerLoad = true;
+            getFooterItems().then((data) => {
+                dispatch(setFooterItemsExplore(data.explore));
+                dispatch(setFooterItemsService(data.service));
+                dispatch(setFooterItemsCompany(data.company));
+            })
+        }
+
+    }, [])
     const stateFooter = useSelector((state) => state.footer)
 
     //console.log(stateFooter.explore);
