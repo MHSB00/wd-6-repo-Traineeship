@@ -15,7 +15,7 @@ import Alert from '@mui/material/Alert'
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { auth } from '../../app/firebase';
 import { AuthErrorCodes, signInWithEmailAndPassword } from 'firebase/auth'
-import { setSignIn } from './signinSlice';
+import { setSignedIn } from './signinSlice';
 import { useSelector, useDispatch } from 'react-redux';
 import { useState } from 'react';
 
@@ -43,14 +43,15 @@ export default function SignIn() {
     const data = new FormData(event.currentTarget);
     try {
       const userCredential = await signInWithEmailAndPassword(auth, data.get('email'), data.get('password'));
-      dispatch(setSignIn({ signin: true }));
+      dispatch(setSignedIn({signedin: true, userEmail: userCredential.user.email, accessToken: userCredential.user.accessToken}));
+      console.log(userCredential.user.accessToken);
     }
     catch (error) {
       console.log(error.message);
       if(error.code === AuthErrorCodes.INVALID_PASSWORD){
         setLogginError('Wrong password. Please try again.')
       } else{
-        setLogginError(error.code)
+        setLogginError(error.message)
       }
     }
 

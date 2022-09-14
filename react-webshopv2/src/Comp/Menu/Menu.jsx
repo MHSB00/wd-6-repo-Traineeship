@@ -36,11 +36,9 @@ const MenuTop = styled.div`
     align-items:center;
     width:90%;
 `
-const ContactInfo = styled.div`
-    
+const ContactInfo = styled.div`  
 `
 const SubMenu = styled.div`
-
 `
 const ShopName = styled.div`
     font-weight:bold;
@@ -76,12 +74,13 @@ const ScrollProgress = styled.div`
     transition: 0.5s;
 `
 
-
 function Menu() {
     let menuLoad = false;
     const stateScrollProgress = useSelector((state) => state.menu.progress);
+    const loggedIn = useSelector((state) => state.signin.signedin);
     const [subMenuShow, setSubMenuShow] = useState(false);
     const dispatch = useDispatch();
+    const stateMenu = useSelector((state) => state.menu.subMenu);
 
     //set menu items in state
     useEffect(() => {
@@ -94,7 +93,13 @@ function Menu() {
             })
         }
     }, [])
-    const stateMenu = useSelector((state) => state.menu.subMenu);
+
+    //check loggedIn
+    useEffect(() => {
+
+    }, [loggedIn])
+
+
 
     //trigger dropdown
     const handeOnMouseOver = () => {

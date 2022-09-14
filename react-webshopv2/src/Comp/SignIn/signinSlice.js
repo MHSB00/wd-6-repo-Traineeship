@@ -1,21 +1,24 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    signin: false,
+    signedin: false,
+    userEmail: '',
+    accessToken: ''
 }
 
 export const signinSlice = createSlice({
     name: 'signin',
     initialState,
     reducers: {
-        setSignIn(state, action) {
-            state.signin = action.payload;
+        setSignedIn(state, action) {
+            state.signedin = action.payload.signedin;
+            state.userEmail = action.payload.userEmail;
+            state.accessToken = action.payload.accessToken;
         },
-
     }
 })
 
 
-export const { setSignIn } = signinSlice.actions;
+export const { setSignedIn } = signinSlice.actions;
 
 export default signinSlice.reducer;

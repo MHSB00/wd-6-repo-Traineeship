@@ -14,10 +14,8 @@ export const menuSlice = createSlice({
             state.progress = action.payload;
         },
         setMenuItems(state, action) {
-           state.subMenu.push(action.payload);
+            state.subMenu.push(action.payload);
         },
-
-
     }
 })
 
