@@ -7,7 +7,9 @@ import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
+import PersonIcon from '@mui/icons-material/Person';
 import Badge from '@mui/material/Badge';
+import Alert from '@mui/material/Alert';
 import { useRef, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateScrollProgress, setMenuItems } from './menuSlice';
@@ -25,7 +27,6 @@ const MenuContainer = styled.div`
     min-height:12rem;
     transition: top 1s;
     z-index:1
-
 `
 const MenuTop = styled.div`
     display:flex;
@@ -54,7 +55,7 @@ const MenuBottom = styled.div`
 
 `
 const DropDownMenu = styled.div`
-    width:100%;   
+    width:100%; 
 `
 const StyledList = styled.ul`
     list-style:none;
@@ -79,6 +80,7 @@ function Menu() {
     const stateScrollProgress = useSelector((state) => state.menu.progress);
     const loggedIn = useSelector((state) => state.signin.signedin);
     const [subMenuShow, setSubMenuShow] = useState(false);
+    const [snackbarOpen, setSnackbarOpen] = useState(false);
     const dispatch = useDispatch();
     const stateMenu = useSelector((state) => state.menu.subMenu);
 
@@ -87,19 +89,18 @@ function Menu() {
         if (!menuLoad) {
             menuLoad = true;
             getMenuItems().then((data) => {
-                data.forEach((item) => {
-                    dispatch(setMenuItems({ id: item.id, name: item.name }));
+                data.forEach((item, index) => {
+                    if(stateMenu[index]?.id !== item.id){
+                        dispatch(setMenuItems({ id: item.id, name: item.name }));
+                    } 
                 })
             })
         }
     }, [])
 
-    //check loggedIn
-    useEffect(() => {
-
-    }, [loggedIn])
-
-
+    useEffect(()=>{
+        setSnackbarOpen(true);
+    },[loggedIn])
 
     //trigger dropdown
     const handeOnMouseOver = () => {
@@ -114,7 +115,6 @@ function Menu() {
     let prevScrollPos = window.scrollY;
     const menuRef = useRef();
     const scrollProgress = useRef();
-
 
     //menu scroll
     window.onscroll = () => {
@@ -146,7 +146,11 @@ function Menu() {
                 <Link to='/'><ShopName>WATCHSHOP</ShopName></Link>
                 <SubMenu>
                     <SearchOutlinedIcon fontSize='large' />
-                    <Link to='/signin'><PersonOutlineOutlinedIcon fontSize='large' /></Link>
+                    {loggedIn
+                    ? (<Link to='/'><PersonIcon fontSize='large' /></Link>)
+                    : (<Link to='/signin'><PersonOutlineOutlinedIcon fontSize='large' /></Link>)
+                    }
+                    
                     <FavoriteBorderOutlinedIcon fontSize='large' />
                     <Badge>
                         <ShoppingBagOutlinedIcon fontSize='large' />
@@ -161,6 +165,9 @@ function Menu() {
                     <StyledLI>SELL & TRADE</StyledLI>
                     <StyledLI>THE COLLECTOR'S JOURNAL</StyledLI>
                 </StyledList>
+                {loggedIn && (
+                    <Alert severity='success'>Logged in.</Alert>
+                )}
             </MenuBottom>
             <ScrollContainer>
                 <ScrollProgress ref={scrollProgress} />

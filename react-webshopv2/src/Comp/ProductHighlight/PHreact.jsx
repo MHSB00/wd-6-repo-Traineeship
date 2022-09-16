@@ -48,10 +48,10 @@ const BaseButton = styled.button`
 `
 
 const PHLeftArrow = styled(BaseButton)`
-     left:24px;
+     left:-50px;
 `
 const PHRightArrow = styled(BaseButton)`
-     right:24px;
+     right:-50px;
 `
 
 function PHreact(props) {

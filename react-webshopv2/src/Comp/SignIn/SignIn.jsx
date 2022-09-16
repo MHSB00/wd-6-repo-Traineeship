@@ -16,8 +16,10 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { auth } from '../../app/firebase';
 import { AuthErrorCodes, signInWithEmailAndPassword } from 'firebase/auth'
 import { setSignedIn } from './signinSlice';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useState } from 'react';
+
+import {useLocation, useNavigate} from 'react-router'
 
 function Copyright(props) {
   return (
@@ -37,6 +39,8 @@ const theme = createTheme();
 export default function SignIn() {
   const dispatch = useDispatch();
   const [logginError, setLogginError] = useState('');
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -44,7 +48,7 @@ export default function SignIn() {
     try {
       const userCredential = await signInWithEmailAndPassword(auth, data.get('email'), data.get('password'));
       dispatch(setSignedIn({signedin: true, userEmail: userCredential.user.email, accessToken: userCredential.user.accessToken}));
-      console.log(userCredential.user.accessToken);
+      navigate('/');
     }
     catch (error) {
       console.log(error.message);
