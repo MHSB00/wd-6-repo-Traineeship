@@ -8,6 +8,8 @@ import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
 import PersonIcon from '@mui/icons-material/Person';
+import ShoppingBag from '@mui/icons-material/ShoppingBag';
+import Favorite from '@mui/icons-material/Favorite'
 import Badge from '@mui/material/Badge';
 import Alert from '@mui/material/Alert';
 import { useRef, useEffect, useState } from 'react';
@@ -75,12 +77,24 @@ const ScrollProgress = styled.div`
     transition: 0.5s;
 `
 
+
+
 function Menu() {
     let menuLoad = false;
     const stateScrollProgress = useSelector((state) => state.menu.progress);
+    const stateItemsInCart = useSelector((state) => state.cart.itemsInCart);
+
+    function getCartTotal({ cartItems }) {
+        
+        // return cartItems.reduce((acc, val) =>{
+        //     acc += val.count;
+        //     return acc;
+        // })
+    }
+
     const loggedIn = useSelector((state) => state.signin.signedin);
     const [subMenuShow, setSubMenuShow] = useState(false);
-    const [snackbarOpen, setSnackbarOpen] = useState(false);
+
     const dispatch = useDispatch();
     const stateMenu = useSelector((state) => state.menu.subMenu);
 
@@ -90,17 +104,17 @@ function Menu() {
             menuLoad = true;
             getMenuItems().then((data) => {
                 data.forEach((item, index) => {
-                    if(stateMenu[index]?.id !== item.id){
-                        dispatch(setMenuItems({ id: item.id, name: item.name }));
-                    } 
+                    if (stateMenu[index]?.id !== item.id) {
+                        dispatch(setMenuItems({ id: item.id, name: item.name, img: item.img }));
+                    }
                 })
             })
         }
     }, [])
 
-    useEffect(()=>{
-        setSnackbarOpen(true);
-    },[loggedIn])
+    useEffect(() => {
+
+    }, [loggedIn])
 
     //trigger dropdown
     const handeOnMouseOver = () => {
@@ -146,14 +160,24 @@ function Menu() {
                 <Link to='/'><ShopName>WATCHSHOP</ShopName></Link>
                 <SubMenu>
                     <SearchOutlinedIcon fontSize='large' />
-                    {loggedIn
-                    ? (<Link to='/'><PersonIcon fontSize='large' /></Link>)
-                    : (<Link to='/signin'><PersonOutlineOutlinedIcon fontSize='large' /></Link>)
-                    }
-                    
-                    <FavoriteBorderOutlinedIcon fontSize='large' />
+                    <Badge badgeContent={stateItemsInCart.length} overlap='circular'>
+                        {loggedIn
+                            ? (<Link to='/'><PersonIcon fontSize='large' /></Link>)
+                            : (<Link to='/Signin'><PersonOutlineOutlinedIcon fontSize='large' /></Link>)
+                        }
+                    </Badge>
                     <Badge>
-                        <ShoppingBagOutlinedIcon fontSize='large' />
+                        {loggedIn
+                            ? (<Favorite fontSize='large' />)
+                            : (<FavoriteBorderOutlinedIcon fontSize='large' />)
+                        }
+                    </Badge>
+                    <Badge>
+                        {loggedIn
+                            ? (<ShoppingBag fontSize='large' />)
+                            : (<ShoppingBagOutlinedIcon fontSize='large' />)
+                        }
+
                     </Badge>
                 </SubMenu>
             </MenuTop>

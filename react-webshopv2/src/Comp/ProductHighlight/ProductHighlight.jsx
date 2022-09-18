@@ -3,8 +3,7 @@ import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 const PHContainer = styled.div`
-    width:12rem;
-    border:1px solid red;
+    width:50%;
     margin-left:50px;
     display:flex;
     flex-direction:column;

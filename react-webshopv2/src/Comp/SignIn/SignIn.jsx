@@ -51,7 +51,6 @@ export default function SignIn() {
       navigate('/');
     }
     catch (error) {
-      console.log(error.message);
       if(error.code === AuthErrorCodes.INVALID_PASSWORD){
         setLogginError('Wrong password. Please try again.')
       } else{
