@@ -17,6 +17,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { updateScrollProgress, setMenuItems } from './menuSlice';
 import { getMenuItems } from '../../app/getMenu';
 import { Link } from 'react-router-dom'
+import BrandOverview from '../BrandOverview/BrandOverview'
 
 const MenuContainer = styled.div`
     position:fixed;
@@ -28,16 +29,17 @@ const MenuContainer = styled.div`
     flex-direction:column;
     min-height:12rem;
     transition: top 1s;
-    z-index:1
+    z-index:1;
+
 `
 const MenuTop = styled.div`
     display:flex;
     justify-content:space-between;
     border-bottom:3px solid black;
-    height:100%;
     text-align:center;
     align-items:center;
     width:90%;
+    height:6rem;
 `
 const ContactInfo = styled.div`  
 `
@@ -51,13 +53,14 @@ const MenuBottom = styled.div`
     display:flex;
     align-items:center;
     border:0px solid blue;
-    height:100%;
+    min-height:5.6rem;
     width:90%;
     justify-content:center;
-
 `
 const DropDownMenu = styled.div`
-    width:100%; 
+    width:100%;
+    display:flex;
+    flex-direction:column;
 `
 const StyledList = styled.ul`
     list-style:none;
@@ -67,8 +70,9 @@ const StyledLI = styled.li`
     padding:1rem;
 `
 const ScrollContainer = styled.div`
-    height:0.3rem;
+
     width:100%;
+
 `
 const ScrollProgress = styled.div`
     height:0.3rem;
@@ -85,7 +89,7 @@ function Menu() {
     const stateItemsInCart = useSelector((state) => state.cart.itemsInCart);
 
     function getCartTotal({ cartItems }) {
-        
+
         // return cartItems.reduce((acc, val) =>{
         //     acc += val.count;
         //     return acc;
@@ -103,18 +107,16 @@ function Menu() {
         if (!menuLoad) {
             menuLoad = true;
             getMenuItems().then((data) => {
-                data.forEach((item, index) => {
-                    if (stateMenu[index]?.id !== item.id) {
-                        dispatch(setMenuItems({ id: item.id, name: item.name, img: item.img }));
+                const { menuItems, menuImg } = data;
+                for (let i = 0; i < menuItems.length; i++) {
+                    if(stateMenu == '' ){
+                        dispatch(setMenuItems({name: menuItems[i], img: menuImg[i]}))  
                     }
-                })
+                }
             })
         }
     }, [])
 
-    useEffect(() => {
-
-    }, [loggedIn])
 
     //trigger dropdown
     const handeOnMouseOver = () => {
@@ -182,8 +184,8 @@ function Menu() {
                 </SubMenu>
             </MenuTop>
             <MenuBottom>
-                <StyledList>
-                    <StyledLI onMouseOver={handeOnMouseOver} onMouseLeave={handeOnMouseLeave}>BRANDS</StyledLI>
+                <StyledList onMouseOver={handeOnMouseOver} onMouseLeave={handeOnMouseLeave}>
+                    <StyledLI>BRANDS</StyledLI>
                     <StyledLI>NEW ARRIVALS</StyledLI>
                     <StyledLI>ALL WATCHES</StyledLI>
                     <StyledLI>SELL & TRADE</StyledLI>
@@ -193,14 +195,15 @@ function Menu() {
                     <Alert severity='success'>Logged in.</Alert>
                 )}
             </MenuBottom>
-            <ScrollContainer>
+            <ScrollContainer onMouseOver={handeOnMouseOver} onMouseLeave={handeOnMouseLeave}>
                 <ScrollProgress ref={scrollProgress} />
             </ScrollContainer>
             {subMenuShow && (
-                <DropDownMenu>
+                <DropDownMenu onMouseOver={handeOnMouseOver} onMouseLeave={handeOnMouseLeave}>
                     {
                         stateMenu.map((menuItems, index) => {
-                            return <div key={index}>{menuItems.name}</div>
+                           // return <div key={index}>{menuItems.name}</div>
+                           return <Link to={`/Brands/${menuItems.name}`} key={menuItems.name} element={<BrandOverview />}>{menuItems.name}</Link>
                         })
                     }
                 </DropDownMenu>

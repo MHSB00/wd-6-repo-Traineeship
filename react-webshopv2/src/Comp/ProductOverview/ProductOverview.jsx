@@ -21,7 +21,7 @@ const POProduct = styled.div`
         text-align:center;
     }
     img{
-        width:50%;
+        width:15rem;
         transition: scale 150ms linear;
         &:hover{
             scale: 1.1;
@@ -32,12 +32,13 @@ const POProduct = styled.div`
 
 const ProductOverview = () => {
     const stateMenu = useSelector((state) => state.menu.subMenu);
+
     return (
         <POContainer>
             {
                 stateMenu.map((item) => {
                     return (
-                        <POProduct key={item.id}>
+                        <POProduct key={item.name}>
                             <Link to={`/Brands/${item.name}`} element={<BrandOverview />}>
                                 <img src={item.img}></img>
                                 <Typography>{item.name}</Typography>

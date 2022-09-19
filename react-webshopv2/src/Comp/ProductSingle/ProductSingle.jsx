@@ -12,7 +12,6 @@ import ProductHighlight from '../ProductHighlight/ProductHighlight'
 const ProductSingleContainer = styled.div`
     margin-top:12rem;
     width:100%;
-    border:1px solid red;
     display:grid;
     grid-template-columns: 1fr 1fr;
 `
@@ -30,14 +29,36 @@ function ProductSingle() {
     const dispatch = useDispatch();
 
     const [getBrandWatch, setGetBrandWatch] = useState();
+    const [getWatchImages, setWatchImages] = useState();
 
 
     useEffect(() => {
-        getWatch(params.name, params.id).then((data) => { setGetBrandWatch(data) });
+        getWatch(params.name, params.id).then((data) => {
+            const { watch, images } = data;
+            setGetBrandWatch(watch);
+            setWatchImages(images);
+        });
     }, [])
 
 
     const result = getBrandWatch?.filter((watch) => watch.id == params.id)
+
+let r=[];
+getWatchImages?.forEach((imgsrc) => {
+        const imgAr = Object?.values(imgsrc)
+        return (
+            imgAr?.forEach((url) => {
+               r.push([React.createElement('img', { src: url }, null)]);
+              return r;
+            })
+
+        )
+    })
+
+
+
+
+
 
 
     const handleAddToCart = (id, brand, type, price, amount) => {
@@ -54,13 +75,10 @@ function ProductSingle() {
                 result.map((watch) => {
                     return (
                         <>
-                            {console.log(watch)}
-                            <PHContainer>
-                                <ProductHighlight key={watch.id}>
-                                    <img src={watch.img1}></img>
-                                    <img src={watch.img2}></img>
-                                    <img src={watch.img3}></img>
-                                </ProductHighlight>
+                            {/* {console.log(watch)} */}
+
+                            <PHContainer key={watch.id}>
+                                <ProductHighlight children={r}/>
                             </PHContainer>
                             <PSProductInfo>
                                 <Typography>{params.name}</Typography>
