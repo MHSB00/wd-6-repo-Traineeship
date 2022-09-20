@@ -41,7 +41,7 @@ const BrandOverview = () => {
 
     useEffect(() => {
         getBrandWatches(brand.name).then((data) => { setAllBrandWatches(data);});
-    }, [])
+    }, [brand.name])
     return (
         <POContainer>
             {

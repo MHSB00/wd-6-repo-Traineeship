@@ -8,9 +8,7 @@ import styled from 'styled-components';
 const FooterContainer = styled.div`
     display:flex;
     flex-direction:row;
-    justify-content:space-around;
-    border:0px solid red;
-    
+    justify-content:space-around;    
 `
 const Explore = styled.div`
 
@@ -33,26 +31,25 @@ const StyledLI = styled.li`
     
 `
 
-
 const Footer = () => {
     let footerLoad = false;
     const dispatch = useDispatch();
+    const stateFooterFilled = useSelector((state) => state.footer);
 
     //set footer items in state
     useEffect(() => {
         if (!footerLoad) {
             footerLoad = true;
             getFooterItems().then((data) => {
-                dispatch(setFooterItemsExplore(data.explore));
-                dispatch(setFooterItemsService(data.service));
-                dispatch(setFooterItemsCompany(data.company));
+                if(stateFooterFilled.explore == ''){
+                   dispatch(setFooterItemsExplore(data.explore));
+                    dispatch(setFooterItemsService(data.service));
+                    dispatch(setFooterItemsCompany(data.company)); 
+                }    
             })
         }
-
     }, [])
-    const stateFooter = useSelector((state) => state.footer)
-
-    //console.log(stateFooter.explore);
+    const stateFooter = useSelector((state) => state.footer);
 
     return (
         <FooterContainer>

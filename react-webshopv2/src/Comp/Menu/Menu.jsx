@@ -30,7 +30,6 @@ const MenuContainer = styled.div`
     min-height:12rem;
     transition: top 1s;
     z-index:1;
-
 `
 const MenuTop = styled.div`
     display:flex;
@@ -81,26 +80,25 @@ const ScrollProgress = styled.div`
     transition: 0.5s;
 `
 
-
-
 function Menu() {
     let menuLoad = false;
     const stateScrollProgress = useSelector((state) => state.menu.progress);
     const stateItemsInCart = useSelector((state) => state.cart.itemsInCart);
 
-    function getCartTotal({ cartItems }) {
-
-        // return cartItems.reduce((acc, val) =>{
-        //     acc += val.count;
-        //     return acc;
-        // })
-    }
 
     const loggedIn = useSelector((state) => state.signin.signedin);
     const [subMenuShow, setSubMenuShow] = useState(false);
 
     const dispatch = useDispatch();
     const stateMenu = useSelector((state) => state.menu.subMenu);
+
+    const getTotalItems = () => {
+        let total = 0
+        stateItemsInCart.forEach(item => {
+            total += item.amount
+        })
+        return total
+    }
 
     //set menu items in state
     useEffect(() => {
@@ -109,22 +107,19 @@ function Menu() {
             getMenuItems().then((data) => {
                 const { menuItems, menuImg } = data;
                 for (let i = 0; i < menuItems.length; i++) {
-                    if(stateMenu == '' ){
-                        dispatch(setMenuItems({name: menuItems[i], img: menuImg[i]}))  
+                    if (stateMenu == '') {
+                        dispatch(setMenuItems({ name: menuItems[i], img: menuImg[i] }))
                     }
                 }
             })
         }
     }, [])
 
-
     //trigger dropdown
     const handeOnMouseOver = () => {
-        //dispatch(setHoverSubMenu({ subMenuShow: true }));
         setSubMenuShow(true)
     }
     const handeOnMouseLeave = () => {
-        //dispatch(setHoverSubMenu({ subMenuShow: false }));
         setSubMenuShow(false)
     }
 
@@ -162,7 +157,7 @@ function Menu() {
                 <Link to='/'><ShopName>WATCHSHOP</ShopName></Link>
                 <SubMenu>
                     <SearchOutlinedIcon fontSize='large' />
-                    <Badge badgeContent={stateItemsInCart.length} overlap='circular'>
+                    <Badge>
                         {loggedIn
                             ? (<Link to='/'><PersonIcon fontSize='large' /></Link>)
                             : (<Link to='/Signin'><PersonOutlineOutlinedIcon fontSize='large' /></Link>)
@@ -174,12 +169,11 @@ function Menu() {
                             : (<FavoriteBorderOutlinedIcon fontSize='large' />)
                         }
                     </Badge>
-                    <Badge>
+                    <Badge badgeContent={getTotalItems()} overlap='circular'>
                         {loggedIn
                             ? (<ShoppingBag fontSize='large' />)
                             : (<ShoppingBagOutlinedIcon fontSize='large' />)
                         }
-
                     </Badge>
                 </SubMenu>
             </MenuTop>
@@ -202,8 +196,8 @@ function Menu() {
                 <DropDownMenu onMouseOver={handeOnMouseOver} onMouseLeave={handeOnMouseLeave}>
                     {
                         stateMenu.map((menuItems, index) => {
-                           // return <div key={index}>{menuItems.name}</div>
-                           return <Link to={`/Brands/${menuItems.name}`} key={menuItems.name} element={<BrandOverview />}>{menuItems.name}</Link>
+                            // return <div key={index}>{menuItems.name}</div>
+                            return <Link to={`/Brands/${menuItems.name}`} key={menuItems.name} element={<BrandOverview />}>{menuItems.name}</Link>
                         })
                     }
                 </DropDownMenu>
