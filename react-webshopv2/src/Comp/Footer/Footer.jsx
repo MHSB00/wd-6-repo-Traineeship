@@ -9,6 +9,8 @@ const FooterContainer = styled.div`
     display:flex;
     flex-direction:row;
     justify-content:space-around;    
+    box-shadow: 0 4px 8px 0 rgba(0.2,0,0,0);
+    padding:1rem;
 `
 const Explore = styled.div`
 

@@ -5,24 +5,24 @@ import Typography from '@mui/material/Typography';
 import { getWatch } from '../../app/getWatch';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { addToCart, removeFromCart } from '../Cart/cartSlice';
+import { removeFromCart } from '../Cart/cartSlice';
 
 const CartContainer = styled.div`
     margin-top:12rem;
-
 `
-
 const ProductContainer = styled.div`
     padding:1rem;
 `
 const ProductCardContainer = styled.div`
-    border:1px solid;
     margin-bottom:0.5rem;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     display:flex;
     flex-direction:row;
     justify-content:space-around;
+        span{
+            padding:2rem;
+            font-size:2rem;
+        }
 
 `
 const ProductLeft = styled.div`
@@ -45,14 +45,14 @@ function Cart() {
     const [getWatchInfo, setGetWatchInfo] = useState([]);
 
     const stateItemsInCart = useSelector((state) => state.cart.itemsInCart);
-    console.log('state:', stateItemsInCart);
+
 
     useEffect(() => {
         if (stateItemsInCart == '') {
             setGetWatchInfo()
         }
         stateItemsInCart.forEach((itemInCart) => {
-            console.log(stateItemsInCart.length);
+            
             if (stateItemsInCart.length >= getWatchInfo) {
                 getWatch(itemInCart.brand, itemInCart.id).then((data) => {
                     const { watch, images } = data;
@@ -78,7 +78,9 @@ function Cart() {
             <ProductContainer>
                 {
                     !getWatchInfo &&(
-                        <span>Empty</span>
+                        <ProductCardContainer>
+                              <span>Cart is empty</span>        
+                        </ProductCardContainer>
                     )
                 }
                 {

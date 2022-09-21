@@ -155,8 +155,9 @@ function Menu() {
                     <WhatsAppIcon fontSize='large' /> +31 098 765 4321
                 </ContactInfo>
                 <Link to='/'><ShopName>WATCHSHOP</ShopName></Link>
-                <SubMenu>
+                <SubMenu><Badge>
                     <SearchOutlinedIcon fontSize='large' />
+                </Badge>
                     <Badge>
                         {loggedIn
                             ? (<Link to='/'><PersonIcon fontSize='large' /></Link>)
@@ -171,8 +172,8 @@ function Menu() {
                     </Badge>
                     <Badge badgeContent={getTotalItems()} overlap='circular'>
                         {loggedIn
-                            ? (<ShoppingBag fontSize='large' />)
-                            : (<ShoppingBagOutlinedIcon fontSize='large' />)
+                            ? (<Link to='/Cart'><ShoppingBag fontSize='large' /></Link>)
+                            : (<Link to='/Cart'><ShoppingBagOutlinedIcon fontSize='large' /></Link>)
                         }
                     </Badge>
                 </SubMenu>

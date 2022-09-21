@@ -6,8 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { getWatch } from '../../app/getWatch';
-import ProductHighlight from '../ProductHighlight/ProductHighlight'
-
+import ProductHighlight from '../ProductHighlight/ProductHighlight';
 
 const ProductSingleContainer = styled.div`
     margin-top:12rem;
@@ -20,10 +19,13 @@ const PHContainer = styled.div`
     justify-content:center;
 `
 const PSProductInfo = styled.div`
-    width100%
-    border:1px solid red;
+    width100%;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:left;
+    
 `
-
 
 function ProductSingle() {
     const params = useParams();
@@ -43,7 +45,7 @@ function ProductSingle() {
 
 
     const result = getBrandWatch?.filter((watch) => watch.id == params.id)
-    const inCart = stateItemsInCart?.find((watch) => (watch.id == params.id) && (watch.brand == params.name) );
+    const inCart = stateItemsInCart?.find((watch) => (watch.id == params.id) && (watch.brand == params.name));
 
 
     let r = [];
@@ -86,11 +88,13 @@ function ProductSingle() {
                                 <Typography>{watch.ref}</Typography>
                                 <Typography>{watch.sku}</Typography>
                                 <Typography>{watch.price}</Typography>
+
                                 <Button
                                     onClick={() => handleAddToCart(watch.id, params.name, watch.name, watch.price, 1)}
                                     type="submit"
                                     variant="contained"
-                                    sx={{ mt: 3, mb: 2 }}
+                                    sx={{ mt: 1, mb: 1 }}
+                                    style={{width:150}}
                                 >
                                     Add to cart
                                 </Button>
@@ -99,28 +103,31 @@ function ProductSingle() {
                                         onClick={() => handleRemoveFromCart(watch.id, params.name, watch.name, watch.price, 1)}
                                         type="submit"
                                         variant="contained"
-                                        sx={{ mt: 3, mb: 2 }}
+                                        sx={{ mt: 1, mb: 1}}
+                                        style={{width:150}}
                                     >
                                         Remove from cart
                                     </Button>
                                 )}
+
                                 {stateItemsInCart != '' && (
                                     <Link to="/Cart">
                                         <Button
                                             type="submit"
                                             variant="contained"
-                                            sx={{ mt: 3, mb: 2 }}
+                                            sx={{ mt: 1, mb: 1 }}
+                                            style={{width:150}}
                                         >
                                             Checkout
                                         </Button>
                                     </Link>
                                 )}
-                            </PSProductInfo>
+                        </PSProductInfo>
                         </React.Fragment>
-                    )
-                })
+    )
+})
             )}
-        </ProductSingleContainer>
+        </ProductSingleContainer >
     )
 }
 

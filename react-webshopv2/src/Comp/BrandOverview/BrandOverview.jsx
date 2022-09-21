@@ -13,12 +13,14 @@ const POContainer = styled.div`
     justify-content:space-evenly;
     align-content:center;
     margin-top:13rem;
+    
 `
 const POProduct = styled.div`
     display:flex;
     flex-direction:column;
     justify-content:center;
     align-items:center;
+    
     a{
         text-align:center;
     }

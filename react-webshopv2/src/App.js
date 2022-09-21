@@ -5,14 +5,14 @@ import SignIn from './Comp/SignIn/SignIn';
 import Footer from './Comp/Footer/Footer';
 import Cart from './Comp/Cart/Cart';
 import ProductOverview from './Comp/ProductOverview/ProductOverview';
-import BrandOverview from './Comp/BrandOverview/BrandOverview'
+import BrandOverview from './Comp/BrandOverview/BrandOverview';
 import ProductSingle from './Comp/ProductSingle/ProductSingle';
+import Content from './Comp/Content/Content'
 import {
   BrowserRouter,
   Route,
   Routes,
 } from "react-router-dom";
-
 
 function App() {
 
@@ -32,6 +32,7 @@ function App() {
           <Route path="/Signin" element={<SignIn />} ></Route>
           <Route path="/Cart" element={<Cart />} ></Route>
         </Routes>
+        <Content/>
         <Footer />
       </div>
     </BrowserRouter>
@@ -40,3 +41,7 @@ function App() {
 
 export default App;
 
+
+ 
+
+ 

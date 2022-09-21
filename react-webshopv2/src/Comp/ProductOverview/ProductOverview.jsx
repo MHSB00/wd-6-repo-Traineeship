@@ -11,23 +11,21 @@ const POContainer = styled.div`
     display:flex;
     justify-content:space-evenly;
     align-content:center;
+    
 `
 const POProduct = styled.div`
     display:flex;
     flex-direction:column;
     justify-content:center;
     align-items:center;
-    a{
-        text-align:center;
-    }
-    img{
-        width:15rem;
-        transition: scale 150ms linear;
-        &:hover{
-            scale: 1.1;
-            border:1px solid black;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+
+        a{
+            text-align:center;
         }
-    }
+        img{
+            width:15rem;
+        }
 `
 
 const ProductOverview = () => {
