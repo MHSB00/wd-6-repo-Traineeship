@@ -27,7 +27,7 @@ const ProductCardContainer = styled.div`
 `
 const ProductLeft = styled.div`
     img{
-        width:10rem;
+        width:15rem;
     }
 `
 const ProductCenter = styled.div`
@@ -95,7 +95,7 @@ function Cart() {
                                         onClick={() => handleRemoveFromCart(watch.id, watch.name, watch.price, 1)}
                                         type="submit"
                                         variant="contained"
-                                        sx={{ mt: 3, mb: 2 }}
+                                        sx={{ mt: 3, mb: 2, backgroundColor:'#cccccc' }}
                                     >
                                         Remove from cart
                                     </Button>

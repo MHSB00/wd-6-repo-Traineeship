@@ -11,13 +11,13 @@ const ContentContainer = styled.div`
     margin-top:1rem;
     margin-bottom:1rem;
     background-color:#1d1b1c;
-    width:100%;
     
     .left{
         display:flex;
         justify-content:center;
         align-items:center;
         width:100%;
+        flex-wrap:wrap;
 
         .contentText{
             display:flex;
@@ -37,22 +37,22 @@ const ContentContainer = styled.div`
         }
     }
     .right{
-        width:100%;
+        display:flex;
         text-align:right;
-
         img{
-            height:100%;
-            
+            max-width:100%;
+            max-height:100%;
+            object-fit:cover;
         }
     }
 
     .left2{
-        width:100%;
+        display:flex;
         text-align:left;
-
         img{
-            height:100%;
-
+            max-width:100%;
+            max-height:100%;
+            object-fit:cover;
         }
     }
 `

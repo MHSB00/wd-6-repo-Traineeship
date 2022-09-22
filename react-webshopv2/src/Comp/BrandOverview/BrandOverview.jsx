@@ -13,7 +13,6 @@ const POContainer = styled.div`
     justify-content:space-evenly;
     align-content:center;
     margin-top:13rem;
-    
 `
 const POProduct = styled.div`
     display:flex;
@@ -24,6 +23,7 @@ const POProduct = styled.div`
     a{
         text-align:center;
     }
+
     img{
         width:15rem;
         transition: scale 150ms linear;
@@ -44,6 +44,7 @@ const BrandOverview = () => {
     useEffect(() => {
         getBrandWatches(brand.name).then((data) => { setAllBrandWatches(data);});
     }, [brand.name])
+
     return (
         <POContainer>
             {

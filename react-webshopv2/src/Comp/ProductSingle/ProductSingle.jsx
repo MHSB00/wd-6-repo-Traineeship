@@ -24,6 +24,27 @@ const PSProductInfo = styled.div`
     flex-direction:column;
     justify-content:center;
     align-items:left;
+
+        .brand{
+            font-size:1rem;
+            color:#aaa;
+        }
+        .type{
+            font-size:2rem;
+            font-weight:bold;
+        }
+        .ref{
+            font-size:0.75rem;
+            color:#aaa;
+        }
+        .sku{
+            font-size:0.75rem;
+            color:#aaa;
+        }
+        .price{
+            font-size:1.5rem;
+        }
+        
     
 `
 
@@ -68,11 +89,6 @@ function ProductSingle() {
         dispatch(removeFromCart({ id, brand, type, price, amount }))
     }
 
-    //check if item is in cart
-    //console.log(stateItemsInCart.filter((currentWatch) => currentWatch.id == watch.id))
-
-
-
     return (
         <ProductSingleContainer>
             {result && (
@@ -83,17 +99,17 @@ function ProductSingle() {
                                 <ProductHighlight children={r} />
                             </PHContainer>
                             <PSProductInfo>
-                                <Typography>{params.name}</Typography>
-                                <Typography>{watch.name}</Typography>
-                                <Typography>{watch.ref}</Typography>
-                                <Typography>{watch.sku}</Typography>
-                                <Typography>{watch.price}</Typography>
+                                <Typography><span className='brand'>{params.name}</span></Typography>
+                                <Typography><span className='type'>{watch.name}</span></Typography>
+                                <Typography><span className='ref'>{watch.ref}</span></Typography>
+                                <Typography><span className='sku'>{watch.sku}</span></Typography>
+                                <Typography><span className='price'>&#x20AC;{new Intl.NumberFormat('nl-NL', { maximumSignificantDigits: 3 }).format(watch.price)}</span></Typography>
 
                                 <Button
                                     onClick={() => handleAddToCart(watch.id, params.name, watch.name, watch.price, 1)}
                                     type="submit"
                                     variant="contained"
-                                    sx={{ mt: 1, mb: 1 }}
+                                    sx={{ mt: 1, mb: 1 , backgroundColor:'#cccccc'}}
                                     style={{width:150}}
                                 >
                                     Add to cart
@@ -103,7 +119,7 @@ function ProductSingle() {
                                         onClick={() => handleRemoveFromCart(watch.id, params.name, watch.name, watch.price, 1)}
                                         type="submit"
                                         variant="contained"
-                                        sx={{ mt: 1, mb: 1}}
+                                        sx={{ mt: 1, mb: 1, backgroundColor:'#cccccc'}}
                                         style={{width:150}}
                                     >
                                         Remove from cart
@@ -115,7 +131,7 @@ function ProductSingle() {
                                         <Button
                                             type="submit"
                                             variant="contained"
-                                            sx={{ mt: 1, mb: 1 }}
+                                            sx={{ mt: 1, mb: 1, backgroundColor:'#cccccc'}}
                                             style={{width:150}}
                                         >
                                             Checkout

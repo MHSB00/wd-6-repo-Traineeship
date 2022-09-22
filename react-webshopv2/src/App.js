@@ -27,6 +27,7 @@ function App() {
               <ProductOverview />
             </>} >
           </Route>
+          <Route path="/All" element={<ProductOverview props="12rem"/>}></Route>
           <Route path="/Brands/:name" element={<BrandOverview />}></Route>
           <Route path="/Brands/:name/:id" element={<ProductSingle/>}></Route>
           <Route path="/Signin" element={<SignIn />} ></Route>

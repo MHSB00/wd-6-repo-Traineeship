@@ -12,15 +12,15 @@ const CarouselContainer = styled.div`
 `
 
 function Carousel() {
+
     return (
         <CarouselContainer>
-            <video key='watch'
+            <video
                 preload='true'
                 autoPlay
                 loop
                 muted
                 className='video'
-                id="player"
                 src="assets/watch.mp4"
                 type='video/mp4'
             >

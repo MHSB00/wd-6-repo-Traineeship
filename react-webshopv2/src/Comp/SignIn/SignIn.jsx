@@ -18,15 +18,14 @@ import { AuthErrorCodes, signInWithEmailAndPassword } from 'firebase/auth'
 import { setSignedIn } from './signinSlice';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
-
-import {useLocation, useNavigate} from 'react-router'
+import { useNavigate } from 'react-router'
 
 function Copyright(props) {
   return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
+    <Typography variant="body2" align="center" {...props}>
       {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
+      <Link color="inherit" href="https://techgrounds.jcrafiki.nl/">
+        Webshop
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -40,20 +39,19 @@ export default function SignIn() {
   const dispatch = useDispatch();
   const [logginError, setLogginError] = useState('');
   const navigate = useNavigate();
-  const location = useLocation();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     try {
       const userCredential = await signInWithEmailAndPassword(auth, data.get('email'), data.get('password'));
-      dispatch(setSignedIn({signedin: true, userEmail: userCredential.user.email, accessToken: userCredential.user.accessToken}));
+      dispatch(setSignedIn({ signedin: true, userEmail: userCredential.user.email, accessToken: userCredential.user.accessToken }));
       navigate('/');
     }
     catch (error) {
-      if(error.code === AuthErrorCodes.INVALID_PASSWORD){
+      if (error.code === AuthErrorCodes.INVALID_PASSWORD) {
         setLogginError('Wrong password. Please try again.')
-      } else{
+      } else {
         setLogginError(error.message)
       }
     }
@@ -72,7 +70,7 @@ export default function SignIn() {
             alignItems: 'center',
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+          <Avatar sx={{ m: 1, bgcolor: 'blue' }}>
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
@@ -103,7 +101,7 @@ export default function SignIn() {
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
             />
-            {logginError &&(
+            {logginError && (
               <Alert severity="error">{logginError}</Alert>
             )
             }
@@ -111,7 +109,7 @@ export default function SignIn() {
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              sx={{ mt: 3, mb: 2, backgroundColor: '#cccccc' }}
             >
               Sign In
             </Button>

@@ -40,7 +40,15 @@ const MenuTop = styled.div`
     width:90%;
     height:6rem;
 `
-const ContactInfo = styled.div`  
+const ContactInfo = styled.div`
+    @media(max-width:768px){
+        .contact{
+            display:none;
+        }
+    }
+    .contact{
+        padding:0.25rem;
+    }
 `
 const SubMenu = styled.div`
 `
@@ -60,6 +68,7 @@ const DropDownMenu = styled.div`
     width:100%;
     display:flex;
     flex-direction:column;
+    padding-left:1rem;
 `
 const StyledList = styled.ul`
     list-style:none;
@@ -67,15 +76,17 @@ const StyledList = styled.ul`
 const StyledLI = styled.li`
     display:inline-block;
     padding:1rem;
+    :hover{
+        color:blue;
+    }
 `
 const ScrollContainer = styled.div`
-
     width:100%;
 
 `
 const ScrollProgress = styled.div`
     height:0.3rem;
-    background-color:black;
+    background-color:blue;
     width:0%;
     transition: 0.5s;
 `
@@ -150,18 +161,19 @@ function Menu() {
         <MenuContainer ref={menuRef}>
             <MenuTop>
                 <ContactInfo>
-                    <LocationOnOutlinedIcon fontSize='large' /> NL
-                    <CallOutlinedIcon fontSize='large' /> +31 123 456 7890
-                    <WhatsAppIcon fontSize='large' /> +31 098 765 4321
+                    <LocationOnOutlinedIcon fontSize='large' />
+                    <span className='contact'>NL</span>
+                    <CallOutlinedIcon fontSize='large' />
+                    <span className='contact'>+31 123 456 7890</span>
+                    <WhatsAppIcon fontSize='large' />
+                    <span className='contact'>+31 098 765 4321</span>
                 </ContactInfo>
                 <Link to='/'><ShopName>WATCHSHOP</ShopName></Link>
-                <SubMenu><Badge>
-                    <SearchOutlinedIcon fontSize='large' />
-                </Badge>
+                <SubMenu>
                     <Badge>
                         {loggedIn
                             ? (<Link to='/'><PersonIcon fontSize='large' /></Link>)
-                            : (<Link to='/Signin'><PersonOutlineOutlinedIcon fontSize='large' /></Link>)
+                            : (<Link to='/Signin'><PersonOutlineOutlinedIcon fontSize='large'/></Link>)
                         }
                     </Badge>
                     <Badge>
@@ -180,15 +192,12 @@ function Menu() {
             </MenuTop>
             <MenuBottom>
                 <StyledList onMouseOver={handeOnMouseOver} onMouseLeave={handeOnMouseLeave}>
-                    <StyledLI>BRANDS</StyledLI>
+                    <StyledLI><Link to='/All'>BRANDS</Link></StyledLI>
                     <StyledLI>NEW ARRIVALS</StyledLI>
                     <StyledLI>ALL WATCHES</StyledLI>
                     <StyledLI>SELL & TRADE</StyledLI>
                     <StyledLI>THE COLLECTOR'S JOURNAL</StyledLI>
                 </StyledList>
-                {loggedIn && (
-                    <Alert severity='success'>Logged in.</Alert>
-                )}
             </MenuBottom>
             <ScrollContainer onMouseOver={handeOnMouseOver} onMouseLeave={handeOnMouseLeave}>
                 <ScrollProgress ref={scrollProgress} />
@@ -196,8 +205,7 @@ function Menu() {
             {subMenuShow && (
                 <DropDownMenu onMouseOver={handeOnMouseOver} onMouseLeave={handeOnMouseLeave}>
                     {
-                        stateMenu.map((menuItems, index) => {
-                            // return <div key={index}>{menuItems.name}</div>
+                        stateMenu.map((menuItems) => {
                             return <Link to={`/Brands/${menuItems.name}`} key={menuItems.name} element={<BrandOverview />}>{menuItems.name}</Link>
                         })
                     }
