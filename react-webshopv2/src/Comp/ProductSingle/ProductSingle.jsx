@@ -13,17 +13,25 @@ const ProductSingleContainer = styled.div`
     width:100%;
     display:grid;
     grid-template-columns: 1fr 1fr;
+
+    @media(max-width:768px){
+        display:flex;
+        flex-direction:column;
+    }
 `
 const PHContainer = styled.div`
     display:flex;
     justify-content:center;
 `
 const PSProductInfo = styled.div`
-    width100%;
+    padding-left:2rem;
     display:flex;
     flex-direction:column;
     justify-content:center;
     align-items:left;
+    @media(max-width:768px){
+        align-items:center;
+    }
 
         .brand{
             font-size:1rem;

@@ -12,8 +12,10 @@ export const getWatch = async (brand, id) => {
     querySnapshot.forEach((doc) => {
         if (doc.data().id == id) {
             docId = doc.id;
+            
         }
     });
+    
 
     const getImg = await getDocs(collection(db, `subMenu/Brands/Brand/${brand}/Watches/${docId}/img`));
     const images = getImg.docs.map(doc => doc.data())

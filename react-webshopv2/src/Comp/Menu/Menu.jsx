@@ -18,6 +18,7 @@ import { updateScrollProgress, setMenuItems } from './menuSlice';
 import { getMenuItems } from '../../app/getMenu';
 import { Link } from 'react-router-dom'
 import BrandOverview from '../BrandOverview/BrandOverview'
+import { createTheme } from '@mui/material/styles';
 
 const MenuContainer = styled.div`
     position:fixed;
@@ -90,6 +91,24 @@ const ScrollProgress = styled.div`
     width:0%;
     transition: 0.5s;
 `
+
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      light: '#757ce8',
+      main: '#3f50b5',
+      dark: '#002884',
+      contrastText: '#fff',
+    },
+    secondary: {
+      light: '#ff7961',
+      main: '#f44336',
+      dark: '#ba000d',
+      contrastText: '#000',
+    },
+  },
+});
 
 function Menu() {
     let menuLoad = false;
@@ -179,10 +198,10 @@ function Menu() {
                     <Badge>
                         {loggedIn
                             ? (<Favorite fontSize='large' />)
-                            : (<FavoriteBorderOutlinedIcon fontSize='large' />)
+                            : (<FavoriteBorderOutlinedIcon fontSize='large'/>)
                         }
                     </Badge>
-                    <Badge badgeContent={getTotalItems()} overlap='circular'>
+                    <Badge badgeContent={getTotalItems()} overlap='circular' anchorOrigin={{vertical: 'bottom', horizontal: 'right' }} color='secondary'>
                         {loggedIn
                             ? (<Link to='/Cart'><ShoppingBag fontSize='large' /></Link>)
                             : (<Link to='/Cart'><ShoppingBagOutlinedIcon fontSize='large' /></Link>)
@@ -194,7 +213,7 @@ function Menu() {
                 <StyledList onMouseOver={handeOnMouseOver} onMouseLeave={handeOnMouseLeave}>
                     <StyledLI><Link to='/All'>BRANDS</Link></StyledLI>
                     <StyledLI>NEW ARRIVALS</StyledLI>
-                    <StyledLI>ALL WATCHES</StyledLI>
+                    <StyledLI><Link to='Allwatches'>ALL WATCHES</Link></StyledLI>
                     <StyledLI>SELL & TRADE</StyledLI>
                     <StyledLI>THE COLLECTOR'S JOURNAL</StyledLI>
                 </StyledList>

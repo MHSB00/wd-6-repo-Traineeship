@@ -7,9 +7,10 @@ import Cart from './Comp/Cart/Cart';
 import ProductOverview from './Comp/ProductOverview/ProductOverview';
 import BrandOverview from './Comp/BrandOverview/BrandOverview';
 import ProductSingle from './Comp/ProductSingle/ProductSingle';
+import Allwatches from './Comp/Allwatches/Allwatches';
 import Content from './Comp/Content/Content'
 import {
-  BrowserRouter,
+  HashRouter,
   Route,
   Routes,
 } from "react-router-dom";
@@ -17,7 +18,7 @@ import {
 function App() {
 
   return (
-    <BrowserRouter>
+    <HashRouter hashtype="hashbang">
       <div className="App">
         <Menu />
         <Routes>
@@ -28,6 +29,7 @@ function App() {
             </>} >
           </Route>
           <Route path="/All" element={<ProductOverview props="12rem"/>}></Route>
+          <Route path="/Allwatches" element={<Allwatches props="12rem"/>}></Route>
           <Route path="/Brands/:name" element={<BrandOverview />}></Route>
           <Route path="/Brands/:name/:id" element={<ProductSingle/>}></Route>
           <Route path="/Signin" element={<SignIn />} ></Route>
@@ -36,7 +38,7 @@ function App() {
         <Content/>
         <Footer />
       </div>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 

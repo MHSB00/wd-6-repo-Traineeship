@@ -1,6 +1,7 @@
 {
   "name": "react-webshopv2",
   "version": "0.1.0",
+  "homepage": "https://techgrounds.jcrafiki.nl/react/webshop",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.10.4",

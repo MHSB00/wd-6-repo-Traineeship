@@ -8,10 +8,11 @@ import { useState, useEffect } from 'react'
 
 
 const POContainer = styled.div`
-    width:100%;
-    display:flex;
-    justify-content:space-evenly;
-    align-content:center;
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+@media(max-width:768px){
+    grid-template-columns: repeat(1, 1fr);
+}
     margin-top:13rem;
 `
 const POProduct = styled.div`

@@ -76,7 +76,7 @@ function PHreact(props) {
     }
 
     return (
-        <PHContainer>
+        <PHContainer key={currentIndex}>
             <PHWrapper>
                 <PHLeftArrow onClick={() => prev()}>&lt;</PHLeftArrow>
                 <PHContentWrapper>

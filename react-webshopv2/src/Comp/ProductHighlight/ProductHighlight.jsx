@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 const PHContainer = styled.div`
-    width:50%;
     margin-left:50px;
     display:flex;
     flex-direction:column;
@@ -49,10 +48,10 @@ const BaseButton = styled.button`
 `
 
 const PHLeftArrow = styled(BaseButton)`
-     left:-50px;
+     left:0px;
 `
 const PHRightArrow = styled(BaseButton)`
-     right:-50px;
+     right:0px;
 `
 
 function PHreact(props) {
@@ -77,7 +76,7 @@ function PHreact(props) {
     }
 
     return (
-        <PHContainer>
+        <PHContainer key={currentIndex}>
             <PHWrapper>
                 <PHLeftArrow onClick={() => prev()}>&lt;</PHLeftArrow>
                 <PHContentWrapper>
