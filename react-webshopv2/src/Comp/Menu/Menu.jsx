@@ -195,12 +195,12 @@ function Menu() {
                             : (<Link to='/Signin'><PersonOutlineOutlinedIcon fontSize='large'/></Link>)
                         }
                     </Badge>
-                    <Badge>
+                    {/* <Badge>
                         {loggedIn
                             ? (<Favorite fontSize='large' />)
                             : (<FavoriteBorderOutlinedIcon fontSize='large'/>)
                         }
-                    </Badge>
+                    </Badge> */}
                     <Badge badgeContent={getTotalItems()} overlap='circular' anchorOrigin={{vertical: 'bottom', horizontal: 'right' }} color='secondary'>
                         {loggedIn
                             ? (<Link to='/Cart'><ShoppingBag fontSize='large' /></Link>)

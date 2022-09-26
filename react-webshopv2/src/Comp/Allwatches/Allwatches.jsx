@@ -38,10 +38,7 @@ const POProduct = styled.div`
 const Allwatches = () => {
 
     const brand = ['Breitling', 'Cartier', 'Omega', 'Patek', 'Rolex', 'Seiko']
-
-
     const [getAllWatches, setAllWatches] = useState([]);
-
 
     useEffect(() => {
         let ar = [];
